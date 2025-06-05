@@ -1,0 +1,17 @@
+<section
+  class="p-6 max-w-7xl mx-auto"
+  [@photoAnimation]
+>
+  <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-900">Photography Portfolio</h2>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    aria-label="Photography gallery"
+  >
+    <img
+      *ngFor="let photo of photos"
+      [src]="photo.src"
+      [alt]="photo.alt"
+      class="rounded-lg shadow-lg object-cover w-full h-60 hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
+    />
+  </div>
+</section>
