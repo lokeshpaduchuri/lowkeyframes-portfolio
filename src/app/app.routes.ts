@@ -10,3 +10,4 @@ export const routes: Routes = [
   { path: 'professional', component: ProfessionalComponent, data: { animation: 'ProfessionalPage' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'ContactPage' } },
 ];
+

@@ -1,12 +1,22 @@
-<nav
-  class="bg-black text-white px-6 py-4 flex justify-between items-center sticky top-0 z-50"
-  role="navigation"
-  aria-label="Primary Navigation"
->
-  <a routerLink="/" class="text-2xl font-extrabold hover:text-indigo-400 transition-colors">LowKey Frames</a>
-  <ul class="flex space-x-8 text-lg font-medium">
-    <li><a routerLink="/photography" routerLinkActive="text-indigo-400" class="hover:text-indigo-400">Photography</a></li>
-    <li><a routerLink="/professional" routerLinkActive="text-indigo-400" class="hover:text-indigo-400">Work</a></li>
-    <li><a routerLink="/contact" routerLinkActive="text-indigo-400" class="hover:text-indigo-400">Contact</a></li>
-  </ul>
+<nav class="bg-neon text-dark shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a routerLink="/" class="text-neon text-2xl font-bold tracking-wide hover:text-mint transition-colors">
+          LowkeyFrames
+        </a>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="hidden md:flex space-x-6 text-sm font-medium">
+        <a routerLink="/photography" routerLinkActive="text-neon" class="hover:text-neon transition-all">Photography</a>
+        <a routerLink="/professional" routerLinkActive="text-neon" class="hover:text-neon transition-all">Work</a>
+        <a routerLink="/contact" routerLinkActive="text-neon" class="hover:text-neon transition-all">Contact</a>
+      </div>
+
+      <!-- Mobile Menu Toggle (optional if you're adding later) -->
+      <!-- <div class="md:hidden">[hamburger icon for mobile menu]</div> -->
+    </div>
+  </div>
 </nav>
