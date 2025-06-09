@@ -1,0 +1,22 @@
+// nav {
+//   @apply fixed top-0 w-full z-50 bg-black text-white;
+// }
+
+nav a {
+  @apply block px-2 py-1 rounded hover:text-green-400 transition-all duration-300;
+}
+
+nav ul li a.router-link-active {
+  @apply text-green-400;
+}
+nav {
+  ul li a {
+    @apply block px-2 py-2 hover:text-green-400 transition-all duration-300;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    @apply w-full bg-black border-t border-gray-600;
+  }
+}
