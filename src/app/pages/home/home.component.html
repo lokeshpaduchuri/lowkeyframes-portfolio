@@ -1,6 +1,23 @@
-<section class="text-center mt-20">
-  <h1 class="text-4xl font-bold mb-4">Welcome to LowKey Frames</h1>
-  <p class="max-w-xl mx-auto text-gray-600">
-    Creative photography and professional portfolio combined into one seamless experience.
-  </p>
+<!-- Hero Section -->
+<section class="relative min-h-screen bg-cover bg-center bg-no-repeat px-4" style="background-image: url('/assets/hero.jpg')">
+  <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center text-white px-4">
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4">Lokesh Paduchuri</h1>
+    <p class="text-xl sm:text-2xl mb-10 typing">Capturing stories — in life, light, and lines.</p>
+    <a href="#scroll-cards" class="animate-bounce text-2xl mt-10 hover:text-emerald transition">↓</a>
+  </div>
+</section>
+
+<!-- Scroll Cards -->
+<section id="scroll-cards" class="bg-ivory text-charcoal py-16 px-4 sm:px-6 grid gap-6 gap-y-10 sm:grid-cols-2">
+  <!-- Photography -->
+  <a [routerLink]="['/photography']" class="group block p-8 rounded-2xl bg-mint shadow-md hover:shadow-xl transition-transform hover:scale-105">
+    <h2 class="text-3xl font-semibold text-emerald mb-4 group-hover:underline">📸 Photography</h2>
+    <p>Albums, stories, portraits, and everything visual.</p>
+  </a>
+
+  <!-- Professional -->
+  <a [routerLink]="['/professional']" class="group block p-8 rounded-2xl bg-aqua shadow-md hover:shadow-xl transition-transform hover:scale-105">
+    <h2 class="text-3xl font-semibold text-emerald mb-4 group-hover:underline">💼 Professional Work</h2>
+    <p>My experience, side projects, and contributions.</p>
+  </a>
 </section>
