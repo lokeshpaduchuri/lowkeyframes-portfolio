@@ -1,21 +1,26 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Project, PROJECTS } from '../../data/projects';
+import { CommonModule } from '@angular/common'; // Import CommonModule for Angular directives
+import { ProjectModalComponent } from '../../components/project-modal/project-modal.component';
 
 @Component({
   selector: 'app-professional',
   standalone: true,
+  imports: [CommonModule, ProjectModalComponent],
   templateUrl: './professional.component.html',
-  imports: [CommonModule],
-  styles: [`
-    h2 { font-weight: 700; margin-bottom: 1rem; }
-    .project { border-bottom: 1px solid #ddd; padding: 1rem 0; }
-    .project:last-child { border: none; }
-  `],
+  styleUrls: ['./professional.component.scss']
 })
 export class ProfessionalComponent {
-  projects = [
-    { title: 'Project A', description: 'Description of professional work A' },
-    { title: 'Project B', description: 'Description of professional work B' },
-    // Add more projects
-  ];
+  projects: Project[] = PROJECTS;
+  selectedProject: Project | null = null;
+
+  openProjectModal(project: Project) {
+    this.selectedProject = project;
+  }
+
+  closeProjectModal() {
+    this.selectedProject = null;
+  }
 }
+
+
