@@ -1,11 +1,13 @@
 <section class="min-h-screen bg-lemon text-emerald px-4 sm:px-8 py-12">
   <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center">My Photography Albums</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 sm:p-6 md:p-10"
+  >
     <a
       *ngFor="let album of albums"
       [routerLink]="['/album', album.id]"
-      class="group rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-neon-green transition"
+      class="group rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
     >
       <img [src]="album.cover" [alt]="album.title" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" />
       <div class="p-4">
