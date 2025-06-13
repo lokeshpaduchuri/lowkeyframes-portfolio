@@ -20,4 +20,17 @@ describe('ContactComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should clear form fields after submit', () => {
+    spyOn(window, 'alert');
+    component.name = 'John Doe';
+    component.email = 'john@example.com';
+    component.message = 'Hello';
+
+    component.onSubmit();
+
+    expect(component.name).toBe('');
+    expect(component.email).toBe('');
+    expect(component.message).toBe('');
+  });
 });
