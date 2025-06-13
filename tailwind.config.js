@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         dark: '#0D0D0D',
         neon: '#00FF88',
-        mint: '#1DB954',
+        mintDark: '#1DB954',
         surface: '#1A1A1A',
         light: '#EAEAEA',
         border: '#333333',
