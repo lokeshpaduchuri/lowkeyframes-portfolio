@@ -28,10 +28,10 @@ module.exports = {
       boxShadow: {
         'neon-green': '0 0 10px #4ADE80',
       },
-      animation: {
-        'fade-in': 'fadeIn 0.6s ease-out',
-        'fade-in-up': 'fadeInUp 0.5s ease-out',
-      },
+        animation: {
+          'fade-in': 'fadeIn 0.6s ease-out',
+          'fade-in-up': 'fadeInUp 1s ease-out',
+        },
       keyframes: {
         fadeIn: {
           '0%': { opacity: 0, transform: 'translateY(10px)' },

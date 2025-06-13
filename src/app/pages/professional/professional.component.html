@@ -1,20 +1,22 @@
-<section class="p-6 max-w-4xl mx-auto">
+<section class="p-6 w-full">
   <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-900">Professional Portfolio</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10">
   <div
-    *ngFor="let project of projects"
-      class="border border-gray-300 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-transform transform hover:scale-[1.02] hover:border-green-500 border border-transparent animate-fade-in-up cursor-pointer"
+    class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-4 gap-6 p-4 sm:p-6 md:p-10"
+  >
+    <div
+      *ngFor="let project of projects"
+      class="group rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500 cursor-pointer animate-fade-in-up"
       (click)="openProjectModal(project)"
     >
        <img
-      [src]="project.image"
-      alt="{{ project.title }}"
-      class="w-full h-48 object-cover sm:h-40 md:h-48"
-    />
-    <div class="p-4">
-      <h3 class="text-green-400 text-lg font-semibold mb-1">{{ project.title }}</h3>
-      <p class="text-zinc-300 text-sm">{{ project.description }}</p>
-    </div>
+        [src]="project.image"
+        alt="{{ project.title }}"
+        class="w-full h-48 object-cover sm:h-40 md:h-48 group-hover:scale-105 transition-transform duration-300"
+      />
+      <div class="p-4">
+        <h3 class="text-green-400 text-lg font-semibold mb-1">{{ project.title }}</h3>
+        <p class="text-zinc-300 text-sm">{{ project.description }}</p>
+      </div>
     </div>
   </div>
 </section>
