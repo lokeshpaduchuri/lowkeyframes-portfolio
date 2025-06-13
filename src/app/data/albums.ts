@@ -34,7 +34,7 @@ export const ALBUMS: Album[] = [
     description: 'Candid smiles and playful innocence.',
     cover: '/assets/albums/kids/cover.jpg',
     images: [
-      '../assets/photos/photo3.jpg',
+      '/assets/photos/photo3.jpg',
       '/assets/photos/photo4.jpg',
     ],
   },
