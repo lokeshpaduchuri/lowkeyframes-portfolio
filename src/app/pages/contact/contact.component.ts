@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CommonModule } from '@angular/common';
@@ -16,10 +17,17 @@ import { CommonModule } from '@angular/common';
     ]),
   ],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   name = '';
   email = '';
   message = '';
+
+  constructor(private titleService: Title, private meta: Meta) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('Contact - Lowkeyframes');
+    this.meta.updateTag({ name: 'description', content: 'Send a message to connect with Lowkeyframes.' });
+  }
 
   hoverState = 'normal';
 
