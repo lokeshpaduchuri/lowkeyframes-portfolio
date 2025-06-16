@@ -7,7 +7,7 @@ import { AlbumViewerComponent } from './pages/album-viewer/album-viewer.componen
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { animation: 'HomePage' } },
-  { path: 'photography', component: PhotographyComponent, data: { animation: '{PhotographyPage}' } },
+  { path: 'photography', component: PhotographyComponent, data: { animation: 'PhotographyPage' } },
   { path: 'professional', component: ProfessionalComponent, data: { animation: 'ProfessionalPage' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'ContactPage' } },
 
