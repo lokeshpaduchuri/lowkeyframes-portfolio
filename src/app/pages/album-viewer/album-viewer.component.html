@@ -1,23 +1,23 @@
 <button
   (click)="goBack()"
-  class="fixed top-4 left-4 z-50 bg-green-600 hover:bg-green-700 text-black px-4 py-2 rounded shadow"
+  class="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 bg-green-600 hover:bg-green-700 text-black px-3 sm:px-4 py-2 rounded shadow"
 >
   Back
 </button>
 
-<div *ngIf="album" class="h-screen bg-black flex items-center justify-center p-4">
+<div *ngIf="album" class="min-h-screen bg-black flex items-center justify-center p-4">
   <swiper-container
     pagination="true"
     navigation="true"
     loop="true"
     slides-per-view="1"
-    class="w-full max-w-5xl h-[80vh] rounded-lg"
+    class="w-full max-w-full sm:max-w-5xl h-[65vh] sm:h-[80vh] rounded-none sm:rounded-lg"
   >
     <swiper-slide *ngFor="let img of album.images">
       <img
         [src]="img"
         alt="Album photo"
-        class="w-full h-full object-contain rounded-lg"
+        class="w-full h-full object-contain rounded-none sm:rounded-lg"
       />
     </swiper-slide>
   </swiper-container>
