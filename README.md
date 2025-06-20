@@ -20,13 +20,13 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## AWS S3 Configuration
 
-Edit `src/environments/environment.ts` with your AWS settings so
-`AwsS3Service` can access the bucket:
+Edit `src/environments/environment.ts` with your bucket settings so
+`AwsS3Service` can access the images:
 
-- `accessKeyId`
-- `secretAccessKey`
 - `region`
 - `bucket`
+
+Since the bucket is public, access keys are no longer required.
 
 ## Further help
 
