@@ -18,6 +18,16 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## AWS S3 Configuration
+
+Edit `src/environments/environment.ts` with your AWS settings so
+`AwsS3Service` can access the bucket:
+
+- `accessKeyId`
+- `secretAccessKey`
+- `region`
+- `bucket`
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
