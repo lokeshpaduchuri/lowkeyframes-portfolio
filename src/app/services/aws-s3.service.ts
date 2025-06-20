@@ -14,7 +14,10 @@ export class AwsS3Service {
     const regex = /<Key>(.*?)<\/Key>/g;
     let match: RegExpExecArray | null;
     while ((match = regex.exec(text)) !== null) {
-      keys.push(match[1]);
+      const key = match[1];
+      if (!key.endsWith('/')) {
+        keys.push(key);
+      }
     }
     return keys.map(key => `https://${bucket}.s3.${region}.amazonaws.com/${key}`);
   }
