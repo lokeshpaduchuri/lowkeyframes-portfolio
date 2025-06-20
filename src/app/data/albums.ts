@@ -23,10 +23,7 @@ export const ALBUMS: Album[] = [
     title: 'Family',
     description: 'Heartwarming moments of family bonding.',
     cover: '/assets/albums/family/cover.jpg',
-    images: [
-      '/assets/photos/photo1.jpg',
-      '/assets/photos/photo2.jpg',
-    ],
+    images: [],
   },
   {
     id: 'kids',
@@ -39,13 +36,10 @@ export const ALBUMS: Album[] = [
     ],
   },
   {
-    id: 'nature',
-    title: 'Nature',
+    id: 'landscape',
+    title: 'Landscape',
     description: 'Landscapes, skies, and all things outdoors.',
     cover: '/assets/albums/nature/cover.jpg',
-    images: [
-      '/assets/albums/nature/1.jpg',
-      '/assets/albums/nature/2.jpg',
-    ],
+    images: [],
   },
 ];
