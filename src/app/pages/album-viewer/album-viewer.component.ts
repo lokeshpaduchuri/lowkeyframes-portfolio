@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-album-viewer',
@@ -23,7 +24,9 @@ export class AlbumViewerComponent implements OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private s3: AwsS3Service
+    private s3: AwsS3Service,
+    private titleService: Title,
+    private meta: Meta
   ) {
     this.paramSub = this.route.params.subscribe(async params => {
       const id = params['id'];
@@ -32,6 +35,8 @@ export class AlbumViewerComponent implements OnDestroy {
         this.router.navigate(['/photography']);
         return;
       }
+      this.titleService.setTitle(`${this.album.title} - Lowkeyframes`);
+      this.meta.updateTag({ name: 'description', content: `Viewing the ${this.album.title} album.` });
       try {
         const bucket = environment.aws.bucket;
         const images = await this.s3.listObjects(bucket, `${id}/`);

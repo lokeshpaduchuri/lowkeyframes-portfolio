@@ -9,9 +9,19 @@
       [routerLink]="['/album', album.id]"
       class="group rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
     >
-      <img [src]="album.cover" [alt]="album.title" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" />
+      <div class="relative">
+        <img
+          [src]="album.cover"
+          [alt]="album.title"
+          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <div
+          class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <h3 class="text-xl font-semibold text-white">{{ album.title }}</h3>
+        </div>
+      </div>
       <div class="p-4">
-        <h3 class="text-xl font-semibold text-emerald">{{ album.title }}</h3>
         <p class="text-charcoal text-sm">{{ album.description }}</p>
       </div>
     </a>

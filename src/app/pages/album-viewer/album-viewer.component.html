@@ -5,13 +5,14 @@
   Back
 </button>
 
-<div *ngIf="album" class="min-h-screen bg-black flex items-center justify-center p-4">
+<div *ngIf="album" class="min-h-screen bg-black flex flex-col items-center justify-center p-4">
+  <h2 class="text-2xl sm:text-3xl font-bold text-green-400 mb-4 animate-fade-in-up">{{ album.title }}</h2>
   <swiper-container
     pagination="true"
     navigation="true"
     loop="true"
     slides-per-view="1"
-    class="w-full max-w-full sm:max-w-5xl h-[65vh] sm:h-[80vh] rounded-none sm:rounded-lg"
+    class="w-full max-w-full sm:max-w-5xl h-[65vh] sm:h-[80vh] rounded-none sm:rounded-lg animate-fade-in-up"
   >
     <swiper-slide *ngFor="let img of album.images">
       <img
