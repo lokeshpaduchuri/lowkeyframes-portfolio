@@ -1,0 +1,12 @@
+.tech-icon {
+  @apply w-8 h-8 sm:w-10 sm:h-10;
+  animation: shuffle 4s ease-in-out infinite;
+}
+
+@keyframes shuffle {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-4px); }
+  50% { transform: translateY(4px); }
+  75% { transform: translateY(-2px); }
+}
+

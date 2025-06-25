@@ -1,33 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { Project, PROJECTS } from '../../data/projects';
-import { CommonModule } from '@angular/common'; // Import CommonModule for Angular directives
-import { ProjectModalComponent } from '../../components/project-modal/project-modal.component';
+import { Experience, EXPERIENCES } from '../../data/experiences';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-professional',
   standalone: true,
-  imports: [CommonModule, ProjectModalComponent],
+  imports: [CommonModule],
   templateUrl: './professional.component.html',
   styleUrls: ['./professional.component.scss']
 })
 export class ProfessionalComponent implements OnInit {
-  projects: Project[] = PROJECTS;
-  selectedProject: Project | null = null;
+  experiences: Experience[] = EXPERIENCES;
 
   constructor(private titleService: Title, private meta: Meta) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Professional Work - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Browse professional projects and collaborations.' });
-  }
-
-  openProjectModal(project: Project) {
-    this.selectedProject = project;
-  }
-
-  closeProjectModal() {
-    this.selectedProject = null;
+    this.titleService.setTitle('Professional Experience - Lowkeyframes');
+    this.meta.updateTag({ name: 'description', content: 'Browse professional work history and technologies used.' });
   }
 }
 
