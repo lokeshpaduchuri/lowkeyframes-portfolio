@@ -1,9 +1,12 @@
 /* Typing animation for intro paragraph */
 .typing {
+  display: block;
   overflow: hidden;
-  white-space: nowrap;
+  max-width: 65ch;
+  white-space: normal;
   border-right: 2px solid currentColor;
-  animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+  animation: typing var(--typing-duration, 4s) steps(var(--chars), end) forwards,
+    blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
