@@ -4,15 +4,23 @@ html {
 }
 
 .typing {
-  overflow: hidden;
+  display: inline-block;
+  width: fit-content;
   white-space: nowrap;
+  overflow: hidden;
   border-right: 2px solid white;
-  animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+  max-width: 0;
+  animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+    overflow: visible;
+  }
 }
 
 @keyframes blink {
