@@ -36,4 +36,11 @@ export const ALBUMS: Album[] = [
     cover: '/assets/albums/nature/cover.jpg',
     images: [],
   },
+  {
+    id: 'nature',
+    title: 'Nature',
+    description: 'Forests, rivers, and wildlife adventures.',
+    cover: '/assets/albums/nature/cover.jpg',
+    images: [],
+  },
 ];
