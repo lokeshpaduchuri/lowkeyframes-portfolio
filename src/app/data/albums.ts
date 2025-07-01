@@ -3,6 +3,7 @@ export interface Album {
   title: string;
   description: string;
   cover: string;
+  coverIndex?: number;
   images: string[];
 }
 

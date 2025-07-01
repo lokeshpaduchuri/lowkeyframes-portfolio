@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
+import { AwsS3Service } from '../../services/aws-s3.service';
+import { environment } from '../../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -10,13 +12,70 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   templateUrl: './photography.component.html',
 })
-export class PhotographyComponent implements OnInit {
-  albums: Album[] = ALBUMS;
+export class PhotographyComponent implements OnInit, OnDestroy {
+  albums: Album[] = [];
+  private coverInterval?: ReturnType<typeof setInterval>;
 
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(
+    private titleService: Title,
+    private meta: Meta,
+    private s3: AwsS3Service
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.titleService.setTitle('Photography - Lowkeyframes');
     this.meta.updateTag({ name: 'description', content: 'Explore photography albums showcasing diverse stories and portraits.' });
+
+    try {
+      const bucket = environment.aws.bucket;
+      const ids = await this.s3.listAlbums(bucket);
+      if (ids.length) {
+        this.albums = await Promise.all(
+          ids.map(async id => {
+            const images = await this.s3.listObjects(bucket, `${id}/`);
+            const local = ALBUMS.find(a => a.id === id);
+            const coverFromS3 = images.find(img => img.includes('cover')) || images[0];
+            const cover = coverFromS3 || local?.cover || '';
+            const title = local?.title || id.replace(/-/g, ' ');
+            const description = local?.description || '';
+            return {
+              id,
+              title,
+              description,
+              cover,
+              coverIndex: coverFromS3 ? images.indexOf(coverFromS3) : local?.coverIndex,
+              images: images.length ? images : local?.images || []
+            } as Album;
+          })
+        );
+        const localOnly = ALBUMS.filter(a => !ids.includes(a.id));
+        this.albums.push(...localOnly);
+      } else {
+        this.albums = ALBUMS;
+      }
+    } catch (err) {
+      console.error('Failed to load albums', err);
+      this.albums = ALBUMS;
+    }
+    this.startCoverRotation();
+  }
+
+  ngOnDestroy() {
+    if (this.coverInterval) {
+      clearInterval(this.coverInterval);
+    }
+  }
+
+  private startCoverRotation() {
+    this.coverInterval = setInterval(() => {
+      this.albums.forEach(album => {
+        if (album.images && album.images.length > 1) {
+          const idx = typeof album.coverIndex === 'number' ? album.coverIndex : 0;
+          const next = (idx + 1) % album.images.length;
+          album.coverIndex = next;
+          album.cover = album.images[next];
+        }
+      });
+    }, 5000);
   }
 }
