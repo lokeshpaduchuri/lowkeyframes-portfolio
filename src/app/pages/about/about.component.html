@@ -6,7 +6,13 @@
   />
   <h2 class="text-4xl font-extrabold mb-6 text-center text-emerald">About Me</h2>
   <p class="mb-4 max-w-prose">
-    <span class="typing" style="--chars:79">Hey, I&rsquo;m Lokesh &ndash; but most people know me through the moments I freeze in time.</span>
+    <span
+      class="typing"
+      style="--chars:79"
+      (animationend)="typingDone = true"
+      [class.done]="typingDone"
+      >Hey, I&rsquo;m Lokesh &ndash; but most people know me through the moments I freeze in time.</span
+    >
   </p>
   <p class="mb-4 animate-fade-in-up opacity-0" style="animation-delay:4s">By profession, I&rsquo;m a web architect &mdash; building sleek, smart digital spaces. But my heart? It belongs to the camera.</p>
 
@@ -24,3 +30,4 @@
     </a>
   </div>
 </section>
+

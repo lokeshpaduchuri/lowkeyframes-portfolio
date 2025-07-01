@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  typingDone = false;
   constructor(private titleService: Title, private meta: Meta) {}
 
   ngOnInit() {
@@ -17,3 +18,4 @@ export class AboutComponent implements OnInit {
     this.meta.updateTag({ name: 'description', content: 'Learn more about Lokesh and the philosophy behind Lowkeyframes.' });
   }
 }
+

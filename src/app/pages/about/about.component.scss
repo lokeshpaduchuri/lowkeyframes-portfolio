@@ -4,23 +4,33 @@
   overflow: hidden;
   max-width: 65ch;
   white-space: normal;
-  border-right: 2px solid currentColor;
-  animation: typing var(--typing-duration, 4s) steps(var(--chars), end) forwards,
-    blink 0.75s step-end infinite;
+  clip-path: inset(0 0 0 100%);
+  animation: reveal var(--typing-duration, 4s) steps(var(--chars), end) forwards;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+.typing::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background-color: currentColor;
+  animation: blink 0.75s step-end infinite;
+}
+
+.typing.done::after {
+  display: none;
+}
+
+@keyframes reveal {
   to {
-    width: 100%;
+    clip-path: inset(0 0 0 0);
   }
 }
 
 @keyframes blink {
   50% {
-    border-color: transparent;
+    opacity: 0;
   }
 }
 
