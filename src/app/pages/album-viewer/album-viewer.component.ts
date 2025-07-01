@@ -28,21 +28,26 @@ export class AlbumViewerComponent implements OnDestroy {
   ) {
     this.paramSub = this.route.params.subscribe(async params => {
       const id = params['id'];
-      this.album = ALBUMS.find(a => a.id === id);
+      const local = ALBUMS.find(a => a.id === id);
+      this.album = local ? { ...local } : undefined;
       try {
         const bucket = environment.aws.bucket;
         const images = await this.s3.listObjects(bucket, `${id}/`);
+        const coverFromS3 = images.find(img => img.includes('cover')) || images[0];
         if (!this.album && images.length) {
           this.album = {
             id,
-            title: id.replace(/-/g, ' '),
-            description: '',
-            cover: images.find(img => img.includes('cover')) || images[0] || '',
-            images
+            title: local?.title || id.replace(/-/g, ' '),
+            description: local?.description || '',
+            cover: coverFromS3 || local?.cover || '',
+            images: images.length ? images : local?.images || []
           } as Album;
         } else if (this.album) {
           if (images.length) {
             this.album.images = images;
+            if (coverFromS3) {
+              this.album.cover = coverFromS3;
+            }
           }
         }
         if (!this.album) {
