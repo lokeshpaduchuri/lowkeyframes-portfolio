@@ -5,16 +5,14 @@
   max-width: 65ch;
   white-space: normal;
   border-right: 2px solid currentColor;
-  animation: typing var(--typing-duration, 4s) steps(var(--chars), end) forwards,
+  clip-path: inset(0 0 0 100%);
+  animation: reveal var(--typing-duration, 4s) steps(var(--chars), end) forwards,
     blink 0.75s step-end infinite;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+@keyframes reveal {
   to {
-    width: 100%;
+    clip-path: inset(0 0 0 0);
   }
 }
 
