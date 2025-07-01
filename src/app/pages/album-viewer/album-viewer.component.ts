@@ -29,18 +29,28 @@ export class AlbumViewerComponent implements OnDestroy {
     this.paramSub = this.route.params.subscribe(async params => {
       const id = params['id'];
       this.album = ALBUMS.find(a => a.id === id);
-      if (!this.album) {
-        this.router.navigate(['/photography']);
-        return;
-      }
-      this.titleService.setTitle(`${this.album.title} - Lowkeyframes`);
-      this.meta.updateTag({ name: 'description', content: `Viewing the ${this.album.title} album.` });
       try {
         const bucket = environment.aws.bucket;
         const images = await this.s3.listObjects(bucket, `${id}/`);
-        if (images.length) {
-          this.album.images = images;
+        if (!this.album && images.length) {
+          this.album = {
+            id,
+            title: id.replace(/-/g, ' '),
+            description: '',
+            cover: images.find(img => img.includes('cover')) || images[0] || '',
+            images
+          } as Album;
+        } else if (this.album) {
+          if (images.length) {
+            this.album.images = images;
+          }
         }
+        if (!this.album) {
+          this.router.navigate(['/photography']);
+          return;
+        }
+        this.titleService.setTitle(`${this.album.title} - Lowkeyframes`);
+        this.meta.updateTag({ name: 'description', content: `Viewing the ${this.album.title} album.` });
       } catch (err) {
         console.error('Failed to load S3 objects', err);
       }
