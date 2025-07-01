@@ -2,17 +2,18 @@
   <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center">My Photography Albums</h2>
 
   <div
-    class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 p-4 sm:p-6 md:p-10"
+    class="max-w-4xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 p-4 sm:p-6 md:p-10"
   >
     <a
       *ngFor="let album of albums"
       [routerLink]="['/album', album.id]"
-      class="group rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
+      class="group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
     >
       <div class="relative">
         <img
           [src]="album.cover"
           [alt]="album.title"
+          loading="lazy"
           class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div
