@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
@@ -12,8 +12,9 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   templateUrl: './photography.component.html',
 })
-export class PhotographyComponent implements OnInit {
+export class PhotographyComponent implements OnInit, OnDestroy {
   albums: Album[] = [];
+  private coverInterval?: ReturnType<typeof setInterval>;
 
   constructor(
     private titleService: Title,
@@ -38,6 +39,7 @@ export class PhotographyComponent implements OnInit {
               title: id.replace(/-/g, ' '),
               description: '',
               cover,
+              coverIndex: images.indexOf(cover),
               images
             } as Album;
           })
@@ -49,5 +51,25 @@ export class PhotographyComponent implements OnInit {
       console.error('Failed to load albums', err);
       this.albums = ALBUMS;
     }
+    this.startCoverRotation();
+  }
+
+  ngOnDestroy() {
+    if (this.coverInterval) {
+      clearInterval(this.coverInterval);
+    }
+  }
+
+  private startCoverRotation() {
+    this.coverInterval = setInterval(() => {
+      this.albums.forEach(album => {
+        if (album.images && album.images.length > 1) {
+          const idx = typeof album.coverIndex === 'number' ? album.coverIndex : 0;
+          const next = (idx + 1) % album.images.length;
+          album.coverIndex = next;
+          album.cover = album.images[next];
+        }
+      });
+    }, 5000);
   }
 }
