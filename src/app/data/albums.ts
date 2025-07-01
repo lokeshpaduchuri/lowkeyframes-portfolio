@@ -13,11 +13,7 @@ export const ALBUMS: Album[] = [
     title: 'Models',
     description: 'Editorial and fashion-style model shoots.',
     cover: '/assets/albums/models/cover.jpg',
-    images: [
-      '/assets/albums/models/1.jpg',
-      '/assets/albums/models/2.jpg',
-      // Add more
-    ],
+    images: [],
   },
   {
     id: 'family',
@@ -31,10 +27,7 @@ export const ALBUMS: Album[] = [
     title: 'Kids',
     description: 'Candid smiles and playful innocence.',
     cover: '/assets/albums/kids/cover.jpg',
-    images: [
-      '/assets/photos/photo3.jpg',
-      '/assets/photos/photo4.jpg',
-    ],
+    images: [],
   },
   {
     id: 'landscape',
