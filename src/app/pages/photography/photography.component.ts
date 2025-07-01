@@ -30,28 +30,33 @@ export class PhotographyComponent implements OnInit, OnDestroy {
       const bucket = environment.aws.bucket;
       const ids = await this.s3.listAlbums(bucket);
       if (ids.length) {
-        const results = await Promise.all(
+        const fetched = await Promise.all(
           ids.map(async id => {
-            const images = await this.s3.listObjects(bucket, `${id}/`);
+            const s3Images = await this.s3.listObjects(bucket, `${id}/`);
+            const local = ALBUMS.find(a => a.id === id);
+            const images = s3Images.length ? s3Images : local?.images || [];
+
             if (!images.length) {
               return null;
             }
-            const local = ALBUMS.find(a => a.id === id);
-            const coverFromS3 = images.find(img => img.includes('cover')) || images[0];
-            const cover = coverFromS3 || local?.cover || '';
+
+            const coverFromS3 = s3Images.find(img => img.includes('cover'));
+            const cover = coverFromS3 || local?.cover || images[0];
             const title = local?.title || id.replace(/-/g, ' ');
             const description = local?.description || '';
+
             return {
               id,
               title,
               description,
               cover,
               coverIndex: coverFromS3 ? images.indexOf(coverFromS3) : local?.coverIndex,
-              images: images
+              images
             } as Album;
           })
         );
-        this.albums = results.filter((a): a is Album => !!a);
+
+        this.albums = fetched.filter((a): a is Album => !!a);
         const localOnly = ALBUMS.filter(a => !ids.includes(a.id));
         this.albums.push(...localOnly);
       } else {
