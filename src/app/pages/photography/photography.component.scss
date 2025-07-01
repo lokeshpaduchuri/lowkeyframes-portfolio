@@ -4,6 +4,7 @@
   }
 
   .group {
+    @apply mb-6 break-inside-avoid;
     transition: transform 0.3s ease;
 
     img {
