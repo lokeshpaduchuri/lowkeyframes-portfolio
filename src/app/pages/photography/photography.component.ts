@@ -56,9 +56,14 @@ export class PhotographyComponent implements OnInit, OnDestroy {
           })
         );
 
-        this.albums = fetched.filter((a): a is Album => !!a);
-        const localOnly = ALBUMS.filter(a => !ids.includes(a.id));
-        this.albums.push(...localOnly);
+        const fetchedAlbums = fetched.filter((a): a is Album => !!a);
+        const map = new Map(fetchedAlbums.map(a => [a.id, a]));
+        this.albums = ALBUMS.map(a => map.get(a.id) || a);
+        fetchedAlbums.forEach(a => {
+          if (!ALBUMS.find(alb => alb.id === a.id)) {
+            this.albums.push(a);
+          }
+        });
       } else {
         this.albums = ALBUMS;
       }
@@ -88,3 +93,4 @@ export class PhotographyComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 }
+
