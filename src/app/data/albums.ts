@@ -30,34 +30,6 @@ export const ALBUMS: Album[] = [
     images: []
   },
   {
-    id: 'street-muse',
-    title: 'Street Muse',
-    description: 'Urban editorials with bold, styled character.',
-    cover: '/assets/albums/street-muse/cover.jpg',
-    images: []
-  },
-  {
-    id: 'form-flow',
-    title: 'Form & Flow',
-    description: 'Motion-led portraits with drapes, gestures, and light.',
-    cover: '/assets/albums/form-flow/cover.jpg',
-    images: []
-  },
-  {
-    id: 'creative-portraits',
-    title: 'Creative Portraits',
-    description: 'Concept-led shoots with mood, story, and flair.',
-    cover: '/assets/albums/creative-portraits/cover.jpg',
-    images: []
-  },
-  {
-    id: 'styled-by-me',
-    title: 'Styled by Me',
-    description: 'Where I serve as both stylist and photographer.',
-    cover: '/assets/albums/styled-by-me/cover.jpg',
-    images: []
-  },
-  {
     id: 'love-vows',
     title: 'Love & Vows',
     description: 'Engagements, proposals, and wedding celebrations.',
@@ -79,6 +51,34 @@ export const ALBUMS: Album[] = [
     images: []
   },
   {
+    id: 'street-muse',
+    title: 'Street Muse',
+    description: 'Urban editorials with bold, styled character.',
+    cover: '/assets/albums/street-muse/cover.jpg',
+    images: []
+  },
+  {
+    id: 'styled-by-me',
+    title: 'Styled by Me',
+    description: 'Where I serve as both stylist and photographer.',
+    cover: '/assets/albums/styled-by-me/cover.jpg',
+    images: []
+  },
+  {
+    id: 'form-flow',
+    title: 'Form & Flow',
+    description: 'Motion-led portraits with drapes, gestures, and light.',
+    cover: '/assets/albums/form-flow/cover.jpg',
+    images: []
+  },
+  {
+    id: 'creative-portraits',
+    title: 'Creative Portraits',
+    description: 'Concept-led shoots with mood, story, and flair.',
+    cover: '/assets/albums/creative-portraits/cover.jpg',
+    images: []
+  },
+  {
     id: 'wanderlens',
     title: 'Wanderlens',
     description: 'Scenic shots from road trips and nature outings.',
@@ -93,3 +93,4 @@ export const ALBUMS: Album[] = [
     images: []
   }
 ];
+
