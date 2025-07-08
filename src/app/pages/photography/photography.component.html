@@ -39,7 +39,8 @@
       </div>
     </a>
   </div>
-  <div class="sticky bottom-4 mt-4 flex justify-center pointer-events-none sm:hidden">
-    <span class="animate-bounce text-3xl text-emerald">↓</span>
+  <div *ngIf="showScrollHint" class="sticky bottom-4 mt-4 flex flex-col items-center justify-center pointer-events-none text-emerald">
+    <span class="animate-bounce text-3xl">↓</span>
+    <span class="text-sm mt-1">Scroll for more</span>
   </div>
 </section>
