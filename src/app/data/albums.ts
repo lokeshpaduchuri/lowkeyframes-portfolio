@@ -37,10 +37,17 @@ export const ALBUMS: Album[] = [
     images: []
   },
   {
-    id: 'wrapped-in-covers',
-    title: 'Wrapped in Covers',
-    description: 'Creative series telling personal stories.',
-    cover: '/assets/albums/wrapped-in-covers/cover.jpg',
+    id: 'form-flow',
+    title: 'Form & Flow',
+    description: 'Motion-led portraits with drapes, gestures, and light.',
+    cover: '/assets/albums/form-flow/cover.jpg',
+    images: []
+  },
+  {
+    id: 'creative-portraits',
+    title: 'Creative Portraits',
+    description: 'Concept-led shoots with mood, story, and flair.',
+    cover: '/assets/albums/creative-portraits/cover.jpg',
     images: []
   },
   {
