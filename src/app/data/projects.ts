@@ -10,7 +10,7 @@ export const PROJECTS: Project[] = [
     title: 'Portfolio Website',
     image: '/assets/projects/portfolio.jpg',
     description: 'A personal portfolio site built with Angular 17, Tailwind CSS, and hosted on AWS.',
-    link: 'https://lokeshpaduchuri.com'
+    link: 'https://lowkeyframes.com'
   },
   {
     title: 'Photography Showcase',
