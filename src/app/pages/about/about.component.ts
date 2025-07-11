@@ -15,7 +15,11 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('About - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Learn more about LowKey Frames and the philosophy behind Lowkeyframes.' });
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Get to know the web architect turned memory hoarder behind LowKey Frames.'
+    });
   }
 }
 
