@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PhotographyComponent implements OnInit, OnDestroy {
   albums: Album[] = [];
+  showScrollHint = false;
   private coverInterval?: ReturnType<typeof setInterval>;
 
   constructor(
@@ -21,6 +22,11 @@ export class PhotographyComponent implements OnInit, OnDestroy {
     private meta: Meta,
     private s3: AwsS3Service
   ) {}
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.checkScrollHint();
+  }
 
   async ngOnInit() {
     this.titleService.setTitle('Photography - Lowkeyframes');
@@ -72,12 +78,19 @@ export class PhotographyComponent implements OnInit, OnDestroy {
       this.albums = ALBUMS;
     }
     this.startCoverRotation();
+    setTimeout(() => this.checkScrollHint());
   }
 
   ngOnDestroy() {
     if (this.coverInterval) {
       clearInterval(this.coverInterval);
     }
+  }
+
+  private checkScrollHint() {
+    const doc = document.documentElement;
+    const bottom = window.scrollY + window.innerHeight;
+    this.showScrollHint = bottom < doc.scrollHeight - 20;
   }
 
   private startCoverRotation() {
