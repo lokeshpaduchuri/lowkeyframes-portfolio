@@ -1,86 +1,49 @@
-<section class="p-6 max-w-md mx-auto">
-  <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-900">Contact Me</h2>
-  
-  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate class="space-y-6">
-    <div>
-      <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-      <input
-        id="name"
-        name="name"
-        type="text"
-        [(ngModel)]="name"
-        required
-        #nameRef="ngModel"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        [class.border-red-500]="nameRef.invalid && (nameRef.dirty || nameRef.touched)"
-        [attr.aria-invalid]="nameRef.invalid && (nameRef.dirty || nameRef.touched) ? 'true' : 'false'"
-        aria-describedby="name-error"
-      />
-      <p
-        *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)"
-        id="name-error"
-        class="mt-1 text-sm text-red-600"
-      >
-        Name is required.
-      </p>
-    </div>
-
-    <div>
-      <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        [(ngModel)]="email"
-        required
-        email
-        #emailRef="ngModel"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        [class.border-red-500]="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
-        [attr.aria-invalid]="emailRef.invalid && (emailRef.dirty || emailRef.touched) ? 'true' : 'false'"
-        aria-describedby="email-error"
-      />
-      <p
-        *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
-        id="email-error"
-        class="mt-1 text-sm text-red-600"
-      >
-        Please enter a valid email.
-      </p>
-    </div>
-
-    <div>
-      <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="5"
-        [(ngModel)]="message"
-        required
-        #messageRef="ngModel"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        [class.border-red-500]="messageRef.invalid && (messageRef.dirty || messageRef.touched)"
-        [attr.aria-invalid]="messageRef.invalid && (messageRef.dirty || messageRef.touched) ? 'true' : 'false'"
-        aria-describedby="message-error"
-      ></textarea>
-      <p
-        *ngIf="messageRef.invalid && (messageRef.dirty || messageRef.touched)"
-        id="message-error"
-        class="mt-1 text-sm text-red-600"
-      >
-        Message is required.
-      </p>
-    </div>
-
-    <button
-      type="submit"
-      [disabled]="!contactForm.form.valid"
-      [@buttonHover]="hoverState"
-      (mouseenter)="hoverState='hovered'"
-      (mouseleave)="hoverState='normal'"
-      class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
-    >
-      Send Message
+<section class="p-6 max-w-xl mx-auto" [ngClass]="{ 'dark:bg-graphite dark:text-light': darkMode }">
+  <div class="flex justify-between mb-4">
+    <h2 class="text-3xl font-extrabold">Let’s Frame Your Story</h2>
+    <button class="px-2 py-1 rounded border" (click)="toggleTheme()">
+      {{ darkMode ? '☀️' : '🌙' }}
     </button>
+  </div>
+
+  <div *ngIf="step === 1" @fade class="space-y-4">
+    <p class="mb-2">What are you looking for?</p>
+    <div class="grid grid-cols-2 gap-4">
+      <button
+        *ngFor="let cat of categories"
+        class="p-4 rounded-lg shadow hover:shadow-lg transition dark:bg-surface"
+        (click)="selectCategory(cat)"
+      >
+        <span class="text-2xl mr-2">{{ cat.icon }}</span>{{ cat.label }}
+      </button>
+    </div>
+  </div>
+
+  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmit()" class="space-y-4">
+    <button type="button" class="text-sm underline" (click)="backToCategories()">← back</button>
+    <p class="text-lg flex items-center gap-2">
+      <span class="text-2xl">{{ selectedCategory?.icon }}</span>
+      {{ selectedCategory?.intro }}
+    </p>
+    <div>
+      <label class="block mb-1" for="name">Name</label>
+      <input id="name" name="name" [(ngModel)]="name" required class="w-full p-2 rounded border" />
+    </div>
+    <div>
+      <label class="block mb-1" for="email">Email</label>
+      <input id="email" name="email" type="email" [(ngModel)]="email" required class="w-full p-2 rounded border" />
+    </div>
+    <div>
+      <label class="block mb-1" for="message">Message</label>
+      <textarea id="message" name="message" rows="4" [(ngModel)]="message" required class="w-full p-2 rounded border" [placeholder]="selectedCategory?.placeholder"></textarea>
+    </div>
+    <div>
+      <label class="block mb-1" for="creativeTitle">If this shoot had a movie title, what would it be?</label>
+      <input id="creativeTitle" name="creativeTitle" [(ngModel)]="creativeTitle" class="w-full p-2 rounded border" />
+    </div>
+    <button type="submit" [disabled]="!form.valid" class="w-full py-2 bg-emerald text-white rounded hover:bg-emerald/90">
+      {{ selectedCategory?.cta }}
+    </button>
+    <p *ngIf="submitted" class="text-center mt-2">📸 Thanks! I’ll be in touch soon.</p>
   </form>
 </section>

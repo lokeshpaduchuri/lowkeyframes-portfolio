@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContactComponent } from './contact.component';
 
 describe('ContactComponent', () => {
@@ -9,9 +8,8 @@ describe('ContactComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ContactComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -21,16 +19,21 @@ describe('ContactComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should clear form fields after submit', () => {
-    spyOn(window, 'alert');
-    component.name = 'John Doe';
+  it('should move to step 2 when category selected', () => {
+    component.selectCategory(component.categories[0]);
+    expect(component.step).toBe(2);
+  });
+
+  it('should clear form fields when resetForm called', () => {
+    component.name = 'John';
     component.email = 'john@example.com';
-    component.message = 'Hello';
-
-    component.onSubmit();
-
+    component.message = 'Hi';
+    component.creativeTitle = 'Test';
+    component.resetForm();
     expect(component.name).toBe('');
     expect(component.email).toBe('');
     expect(component.message).toBe('');
+    expect(component.creativeTitle).toBe('');
+    expect(component.step).toBe(1);
   });
 });
