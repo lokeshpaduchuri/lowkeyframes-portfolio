@@ -36,4 +36,10 @@ describe('ContactComponent', () => {
     expect(component.creativeTitle).toBe('');
     expect(component.step).toBe(1);
   });
+
+  it('should toggle dark mode', () => {
+    const initial = component.darkMode;
+    component.toggleTheme();
+    expect(component.darkMode).toBe(!initial);
+  });
 });

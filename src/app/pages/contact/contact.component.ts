@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -80,7 +80,11 @@ export class ContactComponent implements OnInit {
   darkMode = false;
   submitted = false;
 
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(
+    private titleService: Title,
+    private meta: Meta,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit() {
     this.titleService.setTitle('Contact - Lowkeyframes');
@@ -99,7 +103,12 @@ export class ContactComponent implements OnInit {
 
   toggleTheme() {
     this.darkMode = !this.darkMode;
-    document.documentElement.classList.toggle('dark-mode', this.darkMode);
+    const html = this.renderer.selectRootElement('html', true);
+    if (this.darkMode) {
+      this.renderer.addClass(html, 'dark-mode');
+    } else {
+      this.renderer.removeClass(html, 'dark-mode');
+    }
   }
 
   onSubmit() {
