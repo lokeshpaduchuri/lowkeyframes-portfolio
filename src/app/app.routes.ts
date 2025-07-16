@@ -6,7 +6,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AlbumViewerComponent } from './pages/album-viewer/album-viewer.component'; // new
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
-import { PackagesComponent } from './pages/packages/packages.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { BlogComponent } from './pages/blog/blog.component';
 
@@ -16,7 +15,6 @@ export const routes: Routes = [
   { path: 'photography', component: PhotographyComponent, data: { animation: 'PhotographyPage' } },
   { path: 'professional', component: ProfessionalComponent, data: { animation: 'ProfessionalPage' } },
   { path: 'portfolio', component: PortfolioComponent, data: { animation: 'PortfolioPage' } },
-  { path: 'packages', component: PackagesComponent, data: { animation: 'PackagesPage' } },
   { path: 'reviews', component: ReviewsComponent, data: { animation: 'ReviewsPage' } },
   { path: 'blog', component: BlogComponent, data: { animation: 'BlogPage' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'ContactPage' } },
