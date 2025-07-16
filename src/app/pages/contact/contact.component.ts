@@ -18,6 +18,7 @@ interface ContactCategory {
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
   animations: [
     trigger('fade', [
       transition(':enter', [style({ opacity: 0 }), animate('300ms', style({ opacity: 1 }))]),
