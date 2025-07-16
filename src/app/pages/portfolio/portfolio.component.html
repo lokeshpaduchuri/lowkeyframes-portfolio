@@ -20,8 +20,17 @@
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
-          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
+          [class.loaded]="album.loaded"
+          (load)="album.loaded = true"
+          (error)="album.loadError = true"
         />
+        <div
+          *ngIf="!album.loaded || album.loadError"
+          class="absolute inset-0 flex items-center justify-center bg-gray-300 text-gray-500"
+        >
+          <span class="sr-only">{{ album.title }} placeholder</span>
+        </div>
         <div
           *ngIf="!album.images.length"
           class="absolute inset-0 bg-black/70 flex items-center justify-center text-white font-semibold transition-opacity group-hover:opacity-0"

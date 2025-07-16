@@ -101,6 +101,8 @@ export class PhotographyComponent implements OnInit, OnDestroy {
           const next = (idx + 1) % album.images.length;
           album.coverIndex = next;
           album.cover = album.images[next];
+          album.loaded = false;
+          album.loadError = false;
         }
       });
     }, 5000);
