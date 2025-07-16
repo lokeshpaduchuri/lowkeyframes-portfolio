@@ -36,20 +36,20 @@ export const ALBUMS: Album[] = [
     cover: '/assets/albums/love-vows/cover.jpg',
     images: []
   },
-  {
-    id: 'cheers-cheers',
-    title: 'Cheers & Cheers',
-    description: 'Parties and private events filled with joy.',
-    cover: '/assets/albums/cheers-cheers/cover.jpg',
-    images: []
-  },
-  {
-    id: 'community-chronicles',
-    title: 'Community Chronicles',
-    description: 'Highlights from Trinity Falls and neighborhood events.',
-    cover: '/assets/albums/community-chronicles/cover.jpg',
-    images: []
-  },
+  // {
+  //   id: 'cheers-cheers',
+  //   title: 'Cheers & Cheers',
+  //   description: 'Parties and private events filled with joy.',
+  //   cover: '/assets/albums/cheers-cheers/cover.jpg',
+  //   images: []
+  // },
+  // {
+  //   id: 'community-chronicles',
+  //   title: 'Community Chronicles',
+  //   description: 'Highlights from Trinity Falls and neighborhood events.',
+  //   cover: '/assets/albums/community-chronicles/cover.jpg',
+  //   images: []
+  // },
   {
     id: 'street-muse',
     title: 'Street Muse',
