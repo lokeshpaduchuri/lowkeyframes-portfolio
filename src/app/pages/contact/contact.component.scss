@@ -1,0 +1,159 @@
+.contact {
+  padding: 1.5rem;
+  max-width: 48rem;
+  margin: 2rem auto 0;
+  color: #000;
+  background: #fff;
+  text-align: center;
+}
+
+.contact__header {
+  position: relative;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.contact__title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.contact__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  background: none;
+  cursor: pointer;
+}
+
+.contact__subtitle {
+  margin-bottom: 1rem;
+}
+
+.contact__question {
+  margin-bottom: 0.5rem;
+}
+
+.contact__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+@media (min-width: 600px) {
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .contact__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.contact__category {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.contact__category-emoji {
+  font-size: 1.5rem;
+}
+
+.contact__category:hover {
+  transform: scale(1.03);
+  border-color: #00FF88;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+}
+
+.contact__category:active {
+  transform: scale(0.98);
+}
+
+.contact__form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.contact__input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+  background: #fff;
+}
+
+.contact__submit {
+  padding: 0.5rem;
+  background: #4ADE80;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.contact__submit:hover {
+  background: #3ddc69;
+}
+
+.contact__success {
+  text-align: center;
+}
+
+.contact__back {
+  font-size: 0.875rem;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+
+html.dark-mode .contact {
+  background: #1a1a1a;
+  color: #f1fff6;
+}
+
+html.dark-mode .contact__category {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: inherit;
+}
+
+html.dark-mode .contact__input {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: #f1fff6;
+}
+
+html.dark-mode .contact__category:hover {
+  border-color: #00FF88;
+  box-shadow: 0 0 8px #00FF88;
+}
