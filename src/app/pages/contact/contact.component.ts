@@ -98,7 +98,7 @@ export class ContactComponent implements OnInit {
 
   toggleTheme() {
     this.darkMode = !this.darkMode;
-    document.documentElement.classList.toggle('dark', this.darkMode);
+    document.documentElement.classList.toggle('dark-mode', this.darkMode);
   }
 
   onSubmit() {

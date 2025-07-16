@@ -1,49 +1,51 @@
-<section class="p-6 max-w-xl mx-auto text-black dark:bg-graphite dark:text-light">
-  <div class="flex justify-between mb-4">
-    <h2 class="text-3xl font-extrabold">Let’s Frame Your Story</h2>
-    <button class="px-2 py-1 rounded border" (click)="toggleTheme()">
+<section class="contact">
+  <header class="contact__header">
+    <h2 class="contact__title">Let’s Frame Your Story</h2>
+    <button class="contact__toggle" (click)="toggleTheme()">
       {{ darkMode ? '☀️' : '🌙' }}
     </button>
-  </div>
+  </header>
+  <p class="contact__subtitle">Let us tell your story — just pick how it starts.</p>
 
-  <div *ngIf="step === 1" @fade class="space-y-4">
-    <p class="mb-2">What are you looking for?</p>
-    <div class="grid grid-cols-2 gap-4">
+  <div *ngIf="step === 1" @fade class="contact__categories">
+    <p class="contact__question">What are you looking for?</p>
+    <div class="contact__grid">
       <button
         *ngFor="let cat of categories"
-        class="p-4 rounded-lg shadow hover:shadow-lg transition dark:bg-surface"
+        class="contact__category"
         (click)="selectCategory(cat)"
       >
-        <span class="text-2xl mr-2">{{ cat.icon }}</span>{{ cat.label }}
+        <span class="contact__category-emoji">{{ cat.icon }}</span>
+        <span class="contact__category-label">{{ cat.label }}</span>
       </button>
     </div>
   </div>
 
-  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmit()" class="space-y-4">
-    <button type="button" class="text-sm underline" (click)="backToCategories()">← back</button>
-    <p class="text-lg flex items-center gap-2">
-      <span class="text-2xl">{{ selectedCategory?.icon }}</span>
+  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmit()" class="contact__form">
+    <button type="button" class="contact__back" (click)="backToCategories()">← back</button>
+    <p class="contact__intro">
+      <span class="contact__intro-emoji">{{ selectedCategory?.icon }}</span>
       {{ selectedCategory?.intro }}
     </p>
-    <div>
-      <label class="block mb-1" for="name">Name</label>
-      <input id="name" name="name" [(ngModel)]="name" required class="w-full p-2 rounded border" />
+    <div class="contact__field">
+      <label class="contact__label" for="name">Name</label>
+      <input id="name" name="name" [(ngModel)]="name" required class="contact__input" />
     </div>
-    <div>
-      <label class="block mb-1" for="email">Email</label>
-      <input id="email" name="email" type="email" [(ngModel)]="email" required class="w-full p-2 rounded border" />
+    <div class="contact__field">
+      <label class="contact__label" for="email">Email</label>
+      <input id="email" name="email" type="email" [(ngModel)]="email" required class="contact__input" />
     </div>
-    <div>
-      <label class="block mb-1" for="message">Message</label>
-      <textarea id="message" name="message" rows="4" [(ngModel)]="message" required class="w-full p-2 rounded border" [placeholder]="selectedCategory?.placeholder"></textarea>
+    <div class="contact__field">
+      <label class="contact__label" for="message">Message</label>
+      <textarea id="message" name="message" rows="4" [(ngModel)]="message" required class="contact__input" [placeholder]="selectedCategory?.placeholder"></textarea>
     </div>
-    <div>
-      <label class="block mb-1" for="creativeTitle">If this shoot had a movie title, what would it be?</label>
-      <input id="creativeTitle" name="creativeTitle" [(ngModel)]="creativeTitle" class="w-full p-2 rounded border" />
+    <div class="contact__field">
+      <label class="contact__label" for="creativeTitle">If this shoot had a movie title, what would it be?</label>
+      <input id="creativeTitle" name="creativeTitle" [(ngModel)]="creativeTitle" class="contact__input" />
     </div>
-    <button type="submit" [disabled]="!form.valid" class="w-full py-2 bg-emerald text-white rounded hover:bg-emerald/90">
+    <button type="submit" [disabled]="!form.valid" class="contact__submit">
       {{ selectedCategory?.cta }}
     </button>
-    <p *ngIf="submitted" class="text-center mt-2">📸 Thanks! I’ll be in touch soon.</p>
+    <p *ngIf="submitted" class="contact__success">📸 Thanks! I’ll be in touch soon.</p>
   </form>
 </section>
