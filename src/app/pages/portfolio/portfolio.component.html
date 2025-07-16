@@ -13,7 +13,7 @@
     <a
       *ngFor="let album of albums"
       [routerLink]="['/album', album.id]"
-      class="group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
+      class="album-card group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
     >
       <div class="relative">
         <img
