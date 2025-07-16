@@ -5,6 +5,8 @@ export interface Album {
   cover: string;
   coverIndex?: number;
   images: string[];
+  loaded?: boolean;
+  loadError?: boolean;
 }
 
 export const ALBUMS: Album[] = [

@@ -20,8 +20,25 @@
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
-          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
+          [class.loaded]="album.loaded"
+          (load)="album.loaded = true"
+          (error)="album.loadError = true"
         />
+        <div
+          *ngIf="!album.loaded || album.loadError"
+          class="absolute inset-0 flex items-center justify-center bg-gray-300 text-gray-500"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm0 2v10l-3-3-2.5 2.5L9 9l-4 4V5h14z" />
+          </svg>
+          <span class="sr-only">{{ album.title }} placeholder</span>
+        </div>
         <div
           *ngIf="!album.images.length"
           class="absolute inset-0 bg-black/70 flex items-center justify-center text-white font-semibold transition-opacity group-hover:opacity-0"
