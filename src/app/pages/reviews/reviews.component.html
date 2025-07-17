@@ -1,13 +1,29 @@
-<section class="min-h-screen bg-lavender text-charcoal px-4 py-12">
+<section id="testimonials" aria-label="Client Testimonials" class="min-h-screen bg-lavender text-charcoal px-4 py-12">
   <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">Client Reviews</h2>
-  <div class="max-w-3xl mx-auto space-y-6">
-    <blockquote class="bg-white p-6 rounded-lg shadow">
-      <p class="mb-2">“Amazing experience and beautiful photos!”</p>
-      <footer class="text-sm font-semibold">— Happy Client</footer>
-    </blockquote>
-    <blockquote class="bg-white p-6 rounded-lg shadow">
-      <p class="mb-2">“Captured our family perfectly.”</p>
-      <footer class="text-sm font-semibold">— Another Client</footer>
-    </blockquote>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-6">
+    <article
+      *ngFor="let review of reviews; let i = index"
+      class="relative bg-white text-gray-900 rounded-xl p-6 shadow-lg break-inside-avoid hover:shadow-2xl transition duration-300 ease-in-out"
+      itemscope itemtype="https://schema.org/Review"
+      appInView
+      (inViewChange)="onInView(i)"
+      [@fadeUp]="visible[i] ? 'visible' : 'hidden'"
+    >
+      <p
+        class="relative pl-8 text-lg font-medium text-gray-800 leading-relaxed before:content-['\201C'] before:text-5xl before:text-gray-300 before:absolute before:top-3 before:left-0"
+        itemprop="reviewBody"
+      >
+        {{ review.text }}
+      </p>
+      <span
+        class="text-sm font-semibold text-gray-500 mt-4 block"
+        itemprop="author"
+        itemscope
+        itemtype="https://schema.org/Person"
+      >
+        <meta itemprop="name" [attr.content]="review.author" />
+        — {{ review.author }}
+      </span>
+    </article>
   </div>
 </section>
