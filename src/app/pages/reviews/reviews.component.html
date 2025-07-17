@@ -1,13 +1,29 @@
-<section class="min-h-screen bg-lavender text-charcoal px-4 py-12">
-  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">Client Reviews</h2>
-  <div class="max-w-3xl mx-auto space-y-6">
-    <blockquote class="bg-white p-6 rounded-lg shadow">
-      <p class="mb-2">“Amazing experience and beautiful photos!”</p>
-      <footer class="text-sm font-semibold">— Happy Client</footer>
-    </blockquote>
-    <blockquote class="bg-white p-6 rounded-lg shadow">
-      <p class="mb-2">“Captured our family perfectly.”</p>
-      <footer class="text-sm font-semibold">— Another Client</footer>
-    </blockquote>
+<section id="testimonials" aria-labelledby="client-reviews-heading" class="min-h-screen bg-lavender text-charcoal px-4 py-12">
+  <h2 id="client-reviews-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8">Client Reviews</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-6" @listAnimation>
+    <article
+      *ngFor="let review of reviews; let i = index"
+      class="relative overflow-hidden bg-white/80 dark:bg-zinc-900/90 text-zinc-800 dark:text-white backdrop-blur-md rounded-xl p-6 shadow-lg break-inside-avoid hover:shadow-2xl hover:scale-[1.01] active:scale-[0.98] transition-transform ease-in-out duration-300"
+      itemscope itemtype="https://schema.org/Review"
+      aria-label="Client testimonial"
+      appInView
+      (inViewChange)="onInView(i)"
+      [@fadeUp]="visible[i] ? 'visible' : 'hidden'"
+    >
+      <blockquote class="text-base md:text-lg leading-relaxed flex" itemprop="reviewBody">
+        <span class="before:content-['\201C'] before:text-4xl before:mr-2 before:text-emerald-500"></span>
+        {{ review.text }}
+      </blockquote>
+      <footer
+        class="font-semibold text-sm text-right text-zinc-500 dark:text-zinc-400 mt-4"
+        itemprop="author"
+        itemscope
+        itemtype="https://schema.org/Person"
+      >
+        <meta itemprop="name" [attr.content]="review.author" />
+        — {{ review.author }}
+      </footer>
+      <script type="application/ld+json" [textContent]="schemaData(review)"></script>
+    </article>
   </div>
 </section>
