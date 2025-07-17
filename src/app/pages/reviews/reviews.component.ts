@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, state, query, stagger, animateChild } from '@angular/animations';
 import { REVIEWS, Review } from '../../data/reviews';
 import { InViewDirective } from '../../components/in-view.directive';
 
@@ -13,9 +13,13 @@ import { InViewDirective } from '../../components/in-view.directive';
   styleUrls: ['./reviews.component.scss'],
   animations: [
     trigger('fadeUp', [
-      transition('void => visible', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      state('hidden', style({ opacity: 0, transform: 'translateY(20px)' })),
+      state('visible', style({ opacity: 1, transform: 'none' })),
+      transition('hidden => visible', animate('600ms ease-out'))
+    ]),
+    trigger('listAnimation', [
+      transition(':enter', [
+        query('@fadeUp', stagger(100, animateChild()), { optional: true })
       ])
     ])
   ]
@@ -33,5 +37,27 @@ export class ReviewsComponent implements OnInit {
 
   onInView(index: number) {
     this.visible[index] = true;
+  }
+
+  schemaData(review: Review): string {
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      reviewBody: review.text,
+      author: {
+        '@type': 'Person',
+        name: review.author
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      itemReviewed: {
+        '@type': 'Service',
+        name: 'Photography Service'
+      }
+    };
+    return JSON.stringify(data);
   }
 }
