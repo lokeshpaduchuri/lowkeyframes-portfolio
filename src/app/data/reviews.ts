@@ -13,12 +13,20 @@ export const REVIEWS: Review[] = [
     author: 'Sindhu'
   },
   {
+    text: 'Lokesh is a great photographer. His vision for capturing different angles and creating art is phenomenal, and I would definitely work with him again. He’s personable and makes you feel comfortable, which is important when modeling. I’d highly recommend Lokesh to anyone looking!',
+    author: 'Jacqueline O’Grady'
+  },
+  {
     text: 'Lokesh is a joy to work with. From start to finish, he remained professional while keeping things fun. I appreciate how he keeps shoots quick while optimizing the time to create diverse and beautiful images. I love how he gives models agency to bring their ideas — outfits, poses, expressions — and then enhances those ideas to collaborate on a great project. Miss you!!',
     author: 'Madeline Dembowski'
   },
   {
     text: 'My experience working with you has always been so much fun! You\'re such a talented photographer and videographer with an artistic vision. You make the environment comfortable and easy. We definitely think alike, so when our ideas come together, we kill it every single time! You\'re amazing — keep up the good work. I can\'t wait to shoot with you again soon!',
     author: 'Melissa Pakdaman'
+  },
+  {
+    text: 'Lokesh is extremely professional and brings vision to life. He captures the best expressions and is very approachable when it comes to ideas. The environment is always comfortable, friendly, and full of fun on set. Obviously, professionally you\'re a photographer — but to me, you\'re also a very nice friend. I\'d love to see you explore more and push yourself beyond your comfort zone.',
+    author: 'Veda Sree'
   },
   {
     text: 'I had a great experience working with you! It was always fun hearing your creative ideas and having the freedom to suggest my own. It felt so welcoming and open. I especially enjoyed the playground shoot — it was awesome using impromptu props and getting a little silly at times!',
@@ -47,6 +55,10 @@ export const REVIEWS: Review[] = [
   {
     text: 'Creative and relaxed! I loved the small video clips for memories during the shoot. You\'re doing amazing — keep it up :)',
     author: 'Rachel Lambert'
+  },
+  {
+    text: 'Amazing — I loved the way of your vision and how you brought it to life. Like every woman, I enjoy when someone captures my candid moments — not just still poses. You\'re great at capturing real moments.',
+    author: 'Praneekaanvika'
   },
   {
     text: 'Very good. Unlike some photographers, it wasn\'t weird or creepy — it just felt fun and professional. I really liked the experience! I\'m sad you moved. You were great, and I would\'ve loved to do another shoot. If you come back, let me know!',
@@ -93,3 +105,4 @@ export const REVIEWS: Review[] = [
     author: 'Monika'
   }
 ];
+
