@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
@@ -20,7 +21,8 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   constructor(
     private titleService: Title,
     private meta: Meta,
-    private s3: AwsS3Service
+    private s3: AwsS3Service,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   @HostListener('window:scroll')
@@ -78,7 +80,9 @@ export class PhotographyComponent implements OnInit, OnDestroy {
       this.albums = ALBUMS;
     }
     this.startCoverRotation();
-    setTimeout(() => this.checkScrollHint());
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => this.checkScrollHint());
+    }
   }
 
   ngOnDestroy() {
@@ -88,6 +92,9 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   }
 
   private checkScrollHint() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     const doc = document.documentElement;
     const bottom = window.scrollY + window.innerHeight;
     this.showScrollHint = bottom < doc.scrollHeight - 20;
