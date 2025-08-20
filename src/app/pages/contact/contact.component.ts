@@ -119,9 +119,11 @@ export class ContactComponent implements OnInit {
     data.append('message', this.message);
     data.append('creativeTitle', this.creativeTitle);
     this.submitted = true;
-    setTimeout(() => {
-      this.resetForm();
-    }, 2000);
+    if (typeof window !== 'undefined') {
+      setTimeout(() => {
+        this.resetForm();
+      }, 2000);
+    }
   }
 
   resetForm() {
