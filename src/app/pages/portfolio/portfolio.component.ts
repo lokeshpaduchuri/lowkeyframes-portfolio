@@ -71,7 +71,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       console.error('Failed to load albums', err);
       this.albums = ALBUMS;
     }
-    this.startCoverRotation();
+    if (typeof window !== 'undefined') {
+      this.startCoverRotation();
+    }
   }
 
   ngOnDestroy() {
@@ -81,6 +83,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   }
 
   private startCoverRotation() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     this.coverInterval = setInterval(() => {
       this.albums.forEach(album => {
         if (album.images && album.images.length > 1) {

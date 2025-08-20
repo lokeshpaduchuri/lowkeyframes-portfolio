@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
@@ -21,13 +20,14 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   constructor(
     private titleService: Title,
     private meta: Meta,
-    private s3: AwsS3Service,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private s3: AwsS3Service
   ) {}
 
   @HostListener('window:scroll')
   onScroll() {
-    this.checkScrollHint();
+    if (typeof window !== 'undefined') {
+      this.checkScrollHint();
+    }
   }
 
   async ngOnInit() {
@@ -79,8 +79,8 @@ export class PhotographyComponent implements OnInit, OnDestroy {
       console.error('Failed to load albums', err);
       this.albums = ALBUMS;
     }
-    this.startCoverRotation();
-    if (isPlatformBrowser(this.platformId)) {
+    if (typeof window !== 'undefined') {
+      this.startCoverRotation();
       setTimeout(() => this.checkScrollHint());
     }
   }
@@ -92,7 +92,7 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   }
 
   private checkScrollHint() {
-    if (!isPlatformBrowser(this.platformId)) {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
       return;
     }
     const doc = document.documentElement;
@@ -101,6 +101,9 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   }
 
   private startCoverRotation() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     this.coverInterval = setInterval(() => {
       this.albums.forEach(album => {
         if (album.images && album.images.length > 1) {
