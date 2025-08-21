@@ -42,7 +42,7 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
-  justify-items: center;
+  justify-items: stretch;
 }
 
 @media (min-width: 600px) {
@@ -60,6 +60,7 @@
 .contact__category {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 1rem;
   border: 1px solid #ddd;
@@ -68,6 +69,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor: pointer;
+  width: 100%;
 }
 
 .contact__category-emoji {
@@ -123,6 +125,7 @@
 
 .contact__success {
   text-align: center;
+  color: #4ADE80;
 }
 
 .contact__back {
