@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
 interface ContactCategory {
   id: string;
@@ -79,8 +80,10 @@ export class ContactComponent implements OnInit {
   hover = false;
   darkMode = false;
   submitted = false;
+  submittedName = '';
 
   constructor(
+    private http: HttpClient,
     private titleService: Title,
     private meta: Meta,
     private renderer: Renderer2
@@ -111,19 +114,33 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmitForm() {
     const data = new FormData();
     data.append('name', this.name);
     data.append('email', this.email);
     data.append('category', this.selectedCategory?.label || '');
     data.append('message', this.message);
     data.append('creativeTitle', this.creativeTitle);
-    this.submitted = true;
-    if (typeof window !== 'undefined') {
-      setTimeout(() => {
+    data.append('_captcha', 'false');
+    data.append('_template', 'box');
+    data.append('_subject', 'New Inquiry from LowKey Frames');
+    data.append('_next', 'https://lowkeyframes.com/thank-you');
+
+    this.http.post('https://formsubmit.co/lowkeyframestx@gmail.com', data).subscribe({
+      next: () => {
+        this.submittedName = this.name;
         this.resetForm();
-      }, 2000);
-    }
+        this.submitted = true;
+        if (typeof window !== 'undefined') {
+          setTimeout(() => {
+            this.submitted = false;
+          }, 10000);
+        }
+      },
+      error: err => {
+        console.error('Form submission error:', err);
+      }
+    });
   }
 
   resetForm() {
@@ -133,6 +150,6 @@ export class ContactComponent implements OnInit {
     this.creativeTitle = '';
     this.step = 1;
     this.selectedCategory = undefined;
-    this.submitted = false;
   }
 }
+
