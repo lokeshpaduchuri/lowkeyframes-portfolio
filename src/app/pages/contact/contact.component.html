@@ -6,6 +6,7 @@
     </button> -->
   </header>
   <p class="contact__subtitle">Let us tell your story — just pick how it starts.</p>
+  <p *ngIf="submitted" class="contact__success">Hey {{ submittedName || 'friend' }}! 🎞️ Thanks for reaching out — can’t wait to frame your story.</p>
 
   <div *ngIf="step === 1" @fade class="contact__categories">
     <p class="contact__question">What are you looking for?</p>
@@ -46,7 +47,6 @@
     <button type="submit" [disabled]="!form.valid" class="contact__submit">
       {{ selectedCategory?.cta }}
     </button>
-    <p *ngIf="submitted" class="contact__success">📸 Thanks! I’ll be in touch soon.</p>
   </form>
 </section>
 

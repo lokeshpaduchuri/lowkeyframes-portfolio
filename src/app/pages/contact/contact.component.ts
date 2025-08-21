@@ -80,6 +80,7 @@ export class ContactComponent implements OnInit {
   hover = false;
   darkMode = false;
   submitted = false;
+  submittedName = '';
 
   constructor(
     private http: HttpClient,
@@ -117,6 +118,7 @@ export class ContactComponent implements OnInit {
     const data = new FormData();
     data.append('name', this.name);
     data.append('email', this.email);
+    data.append('category', this.selectedCategory?.label || '');
     data.append('message', this.message);
     data.append('creativeTitle', this.creativeTitle);
     data.append('_captcha', 'false');
@@ -126,11 +128,13 @@ export class ContactComponent implements OnInit {
 
     this.http.post('https://formsubmit.co/lowkeyframestx@gmail.com', data).subscribe({
       next: () => {
+        this.submittedName = this.name;
+        this.resetForm();
         this.submitted = true;
         if (typeof window !== 'undefined') {
           setTimeout(() => {
-            this.resetForm();
-          }, 2000);
+            this.submitted = false;
+          }, 10000);
         }
       },
       error: err => {
@@ -146,7 +150,6 @@ export class ContactComponent implements OnInit {
     this.creativeTitle = '';
     this.step = 1;
     this.selectedCategory = undefined;
-    this.submitted = false;
   }
 }
 
