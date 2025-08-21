@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmit()" class="contact__form">
+  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmitForm()" class="contact__form">
     <button type="button" class="contact__back" (click)="backToCategories()">← back</button>
     <p class="contact__intro">
       <span class="contact__intro-emoji">{{ selectedCategory?.icon }}</span>
@@ -49,3 +49,4 @@
     <p *ngIf="submitted" class="contact__success">📸 Thanks! I’ll be in touch soon.</p>
   </form>
 </section>
+
