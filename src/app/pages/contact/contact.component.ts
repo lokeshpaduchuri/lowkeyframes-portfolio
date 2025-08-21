@@ -129,8 +129,8 @@ export class ContactComponent implements OnInit {
     this.http.post('https://formsubmit.co/lowkeyframestx@gmail.com', data).subscribe({
       next: () => {
         this.submittedName = this.name;
-        this.resetForm();
         this.submitted = true;
+        this.resetForm();
         if (typeof window !== 'undefined') {
           setTimeout(() => {
             this.submitted = false;

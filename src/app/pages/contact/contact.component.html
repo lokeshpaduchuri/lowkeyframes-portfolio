@@ -8,7 +8,7 @@
   <p class="contact__subtitle">Let us tell your story — just pick how it starts.</p>
   <p *ngIf="submitted" class="contact__success">Hey {{ submittedName || 'friend' }}! 🎞️ Thanks for reaching out — can’t wait to frame your story.</p>
 
-  <div *ngIf="step === 1" @fade class="contact__categories">
+  <div *ngIf="step === 1 && !submitted" @fade class="contact__categories">
     <p class="contact__question">What are you looking for?</p>
     <div class="contact__grid">
       <button
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <form *ngIf="step === 2" #form="ngForm" @fade (ngSubmit)="onSubmitForm()" class="contact__form">
+  <form *ngIf="step === 2 && !submitted" #form="ngForm" @fade (ngSubmit)="onSubmitForm()" class="contact__form">
     <button type="button" class="contact__back" (click)="backToCategories()">← back</button>
     <p class="contact__intro">
       <span class="contact__intro-emoji">{{ selectedCategory?.icon }}</span>
