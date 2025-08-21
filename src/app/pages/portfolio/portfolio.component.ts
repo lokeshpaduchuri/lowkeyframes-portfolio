@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
@@ -12,9 +14,10 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   templateUrl: './portfolio.component.html',
 })
-export class PortfolioComponent implements OnInit, OnDestroy {
+export class PortfolioComponent implements OnInit, OnDestroy, AfterViewInit {
   albums: Album[] = [];
   private coverInterval?: ReturnType<typeof setInterval>;
+  @ViewChildren('.album-card', { read: ElementRef }) albumCards!: QueryList<ElementRef>;
 
   constructor(
     private titleService: Title,
@@ -76,10 +79,20 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngAfterViewInit() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+    this.animateCards();
+    this.albumCards.changes.subscribe(() => this.animateCards());
+  }
+
   ngOnDestroy() {
     if (this.coverInterval) {
       clearInterval(this.coverInterval);
     }
+    ScrollTrigger.getAll().forEach(t => t.kill());
   }
 
   private startCoverRotation() {
@@ -98,6 +111,27 @@ export class PortfolioComponent implements OnInit, OnDestroy {
         }
       });
     }, 5000);
+  }
+
+  private animateCards() {
+    const elements = this.albumCards.map(c => c.nativeElement as HTMLElement);
+    if (!elements.length) {
+      return;
+    }
+    gsap.set(elements, { opacity: 0, y: 40 });
+    elements.forEach((el, i) => {
+      const opts: any = {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: i * 0.1,
+      };
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        opts.scrollTrigger = { trigger: el, start: 'top 80%', once: true };
+      }
+      gsap.to(el, opts);
+    });
   }
 }
 
