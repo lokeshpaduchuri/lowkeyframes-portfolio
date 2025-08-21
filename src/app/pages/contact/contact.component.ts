@@ -124,9 +124,8 @@ export class ContactComponent implements OnInit {
     data.append('_captcha', 'false');
     data.append('_template', 'box');
     data.append('_subject', 'New Inquiry from LowKey Frames');
-    data.append('_next', 'https://lowkeyframes.com/thank-you');
 
-    this.http.post('https://formsubmit.co/lowkeyframestx@gmail.com', data).subscribe({
+    this.http.post('https://formsubmit.co/ajax/lowkeyframestx@gmail.com', data).subscribe({
       next: () => {
         this.submittedName = this.name;
         this.submitted = true;
