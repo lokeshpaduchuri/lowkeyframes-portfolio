@@ -1,5 +1,5 @@
 <section class="min-h-screen bg-lemon text-emerald px-4 sm:px-8 py-12">
-  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Photography Albums</h2>
+  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-4">Photography Albums</h1>
   <ul class="text-center mb-10 space-y-1">
     <li>🧡 <span class="font-semibold">Family &amp; Kids</span></li>
     <li>💍 <span class="font-semibold">Events &amp; Celebrations</span></li>
@@ -20,6 +20,8 @@
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
+          decoding="async"
+          [attr.sizes]="'(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'"
           class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
           [class.loaded]="album.loaded"
           (load)="album.loaded = true"

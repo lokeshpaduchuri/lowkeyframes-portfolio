@@ -1,5 +1,5 @@
 <section class="min-h-screen bg-lemon text-emerald px-4 sm:px-8 py-12">
-  <h2 class="text-4xl font-bold text-green-500 text-center mb-2">Portfolio</h2>
+  <h1 class="text-4xl font-bold text-green-500 text-center mb-2">Portfolio</h1>
   <div class="flex flex-wrap justify-center gap-4 mt-0 mb-10">
     <span
       class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
@@ -51,6 +51,8 @@
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
+          decoding="async"
+          [attr.sizes]="'(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'"
           class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
           [class.loaded]="album.loaded"
           (load)="album.loaded = true"

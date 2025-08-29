@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   standalone: true,
@@ -17,14 +17,16 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   private coverInterval?: ReturnType<typeof setInterval>;
 
   constructor(
-    private titleService: Title,
-    private meta: Meta,
+    private seo: SeoService,
     private s3: AwsS3Service
   ) {}
 
   async ngOnInit() {
-    this.titleService.setTitle('Portfolio - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Browse portfolio albums showcasing diverse stories and portraits.' });
+    this.seo.setSEO({
+      title: 'Portfolio',
+      description: 'Browse portfolio albums showcasing diverse stories and portraits.',
+      path: '/portfolio'
+    });
 
     try {
       const bucket = environment.aws.bucket;
@@ -100,4 +102,3 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 }
-

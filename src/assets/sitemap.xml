@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/</loc>
-  </url>
-  <url>
-    <loc>/photography</loc>
-  </url>
-  <url>
-    <loc>/professional</loc>
-  </url>
-  <url>
-    <loc>/contact</loc>
-  </url>
+  <url><loc>https://lowkeyframes.com/</loc></url>
+  <url><loc>https://lowkeyframes.com/portfolio</loc></url>
+  <url><loc>https://lowkeyframes.com/photography</loc></url>
+  <url><loc>https://lowkeyframes.com/reviews</loc></url>
+  <url><loc>https://lowkeyframes.com/about</loc></url>
+  <url><loc>https://lowkeyframes.com/contact</loc></url>
+  <url><loc>https://lowkeyframes.com/album/twined-hearts</loc></url>
+  <url><loc>https://lowkeyframes.com/album/little-moments</loc></url>
+  <url><loc>https://lowkeyframes.com/album/baby-bliss</loc></url>
+  <url><loc>https://lowkeyframes.com/album/love-vows</loc></url>
+  <url><loc>https://lowkeyframes.com/album/cheers-cheers</loc></url>
+  <url><loc>https://lowkeyframes.com/album/community-chronicles</loc></url>
+  <url><loc>https://lowkeyframes.com/album/street-muse</loc></url>
+  <url><loc>https://lowkeyframes.com/album/styled-by-me</loc></url>
+  <url><loc>https://lowkeyframes.com/album/form-flow</loc></url>
+  <url><loc>https://lowkeyframes.com/album/creative-portraits</loc></url>
+  <url><loc>https://lowkeyframes.com/album/wanderlens</loc></url>
+  <url><loc>https://lowkeyframes.com/album/sky-stories</loc></url>
 </urlset>

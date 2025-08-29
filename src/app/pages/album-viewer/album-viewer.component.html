@@ -6,13 +6,15 @@
 </button>
 
 <div *ngIf="album" class="min-h-screen bg-black p-4">
-  <h2 class="text-2xl sm:text-3xl font-bold text-green-400 mb-4 animate-fade-in-up text-center">{{ album.title }}</h2>
+  <h1 class="text-2xl sm:text-3xl font-bold text-green-400 mb-4 animate-fade-in-up text-center">{{ album.title }}</h1>
   <div class="columns-1 sm:columns-2 md:columns-3 gap-4">
     <img
       *ngFor="let img of album.images"
       [src]="img"
       [alt]="album.title + ' photo'"
       loading="lazy"
+      decoding="async"
+      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
       class="w-full mb-4 rounded-lg"
     />
   </div>

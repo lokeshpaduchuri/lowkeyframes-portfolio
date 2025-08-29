@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-packages',
@@ -10,10 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent implements OnInit {
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Packages - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Photography session packages and booking information.' });
+    this.seo.setSEO({
+      title: 'Packages',
+      description: 'Photography session packages and booking information.',
+      path: '/packages'
+    });
   }
 }

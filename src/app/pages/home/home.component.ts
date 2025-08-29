@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -10,10 +10,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Home - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Welcome to the Lowkeyframes portfolio home page.' });
+    this.seo.setSEO({
+      title: 'Home',
+      description: 'Welcome to the Lowkeyframes portfolio home page.',
+      path: '/'
+    });
   }
 }
