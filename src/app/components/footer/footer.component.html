@@ -1,3 +1,14 @@
 <footer class="bg-gray-900 text-gray-400 text-center p-6 mt-12">
-  <p>© {{ currentYear }} LowKey Frames — Crafted with ❤️ by LowKey Frames</p>
+  <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+    <p>© {{ currentYear }} LowKey Frames — Crafted with ❤️ by LowKey Frames</p>
+    <app-social-links [size]="'sm'"></app-social-links>
+  </div>
+  <nav class="sr-only" aria-label="Social links">
+    <ul class="flex justify-center gap-4">
+      <li><a href="https://instagram.com/lowkey.frames" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition">Instagram</a></li>
+      <li><a href="https://instagram.com/twinedheartsbyloki" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition">Instagram (twinedheartsbyloki)</a></li>
+      <li><a href="https://www.pinterest.com/lowkeyframes" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition">Pinterest</a></li>
+      <li><a href="mailto:lowkeyframestx@gmail.com" class="text-sm hover:text-white transition">Email</a></li>
+    </ul>
+  </nav>
 </footer>
