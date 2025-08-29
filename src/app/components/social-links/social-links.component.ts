@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 interface Social {
@@ -12,7 +12,7 @@ interface Social {
 @Component({
   selector: 'app-social-links',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [CommonModule],
   templateUrl: './social-links.component.html',
   styles: [``],
   host: { class: 'flex gap-3' }
