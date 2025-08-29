@@ -23,8 +23,10 @@ describe('SocialLinksComponent', () => {
   it('renders visible labels when showLabels is true', () => {
     component.showLabels = true;
     fixture.detectChanges();
-    const anchor: HTMLElement = fixture.nativeElement.querySelector('a');
-    expect(anchor.textContent?.trim()).toContain('Follow on Instagram');
+    const span: HTMLElement = fixture.nativeElement.querySelector('a span:last-child');
+    expect(span.textContent?.trim()).toBe('Follow on Instagram');
+    expect(span.classList).toContain('ml-2');
+    expect(span.classList).not.toContain('sr-only');
   });
 
   it('applies label as title attribute', () => {
@@ -32,10 +34,11 @@ describe('SocialLinksComponent', () => {
     expect(anchor.getAttribute('title')).toBe('Follow on Instagram');
   });
 
-  it('renders sr-only spans when labels are hidden', () => {
+  it('hides labels visually when showLabels is false', () => {
     component.showLabels = false;
     fixture.detectChanges();
-    const sr: HTMLElement | null = fixture.nativeElement.querySelector('span.sr-only');
-    expect(sr?.textContent?.trim()).toBe('Follow on Instagram');
+    const span: HTMLElement = fixture.nativeElement.querySelector('a span:last-child');
+    expect(span.classList).toContain('sr-only');
+    expect(span.classList).not.toContain('ml-2');
   });
 });

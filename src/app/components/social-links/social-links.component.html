@@ -9,7 +9,6 @@
     class="inline-flex items-center justify-center rounded-full ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition duration-200 transform group hover:scale-[1.06] hover:-translate-y-0.5 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
   >
     <span class="text-emerald-400 group-hover:text-white fill-current transition" [innerHTML]="social.svg"></span>
-    <span *ngIf="showLabels" class="ml-2">{{ social.label }}</span>
-    <span *ngIf="!showLabels" class="sr-only">{{ social.label }}</span>
+    <span [class.ml-2]="showLabels" [class.sr-only]="!showLabels">{{ social.label }}</span>
   </a>
 </ng-container>
