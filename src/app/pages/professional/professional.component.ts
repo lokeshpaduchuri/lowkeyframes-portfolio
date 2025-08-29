@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { Experience, EXPERIENCES } from '../../data/experiences';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-professional',
@@ -13,12 +13,14 @@ import { CommonModule } from '@angular/common';
 export class ProfessionalComponent implements OnInit {
   experiences: Experience[] = EXPERIENCES;
 
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Professional Experience - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Browse professional work history and technologies used.' });
+    this.seo.setSEO({
+      title: 'Professional Experience',
+      description: 'Browse professional work history and technologies used.',
+      path: '/professional'
+    });
   }
 }
-
 

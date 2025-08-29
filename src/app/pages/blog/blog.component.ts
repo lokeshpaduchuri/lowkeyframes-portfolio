@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-blog',
@@ -10,10 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Blog - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Latest updates and behind-the-scenes stories.' });
+    this.seo.setSEO({
+      title: 'Blog',
+      description: 'Latest updates and behind-the-scenes stories.',
+      path: '/blog'
+    });
   }
 }

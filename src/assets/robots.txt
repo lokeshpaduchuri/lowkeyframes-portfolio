@@ -1,2 +1,8 @@
 User-agent: *
 Allow: /
+
+# Disallow build artifacts and hidden paths (none by default)
+# Disallow:
+
+# Point to the sitemap
+Sitemap: https://lowkeyframes.com/sitemap.xml

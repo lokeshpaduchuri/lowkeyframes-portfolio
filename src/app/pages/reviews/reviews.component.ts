@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate, state, query, stagger, animateChild } from '@angular/animations';
 import { REVIEWS, Review } from '../../data/reviews';
 import { InViewDirective } from '../../components/in-view.directive';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-reviews',
@@ -28,11 +28,14 @@ export class ReviewsComponent implements OnInit {
   reviews: Review[] = REVIEWS;
   visible: boolean[] = [];
 
-  constructor(private titleService: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Client Reviews - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Testimonials from photography clients.' });
+    this.seo.setSEO({
+      title: 'Client Reviews',
+      description: 'Testimonials from photography clients.',
+      path: '/reviews'
+    });
   }
 
   onInView(index: number) {

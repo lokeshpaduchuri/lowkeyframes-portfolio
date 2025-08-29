@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-album-viewer',
@@ -23,8 +23,7 @@ export class AlbumViewerComponent implements OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private s3: AwsS3Service,
-    private titleService: Title,
-    private meta: Meta
+    private seo: SeoService
   ) {
     this.paramSub = this.route.params.subscribe(async params => {
       const id = params['id'];
@@ -54,8 +53,17 @@ export class AlbumViewerComponent implements OnDestroy {
           this.router.navigate(['/photography']);
           return;
         }
-        this.titleService.setTitle(`${this.album.title} - Lowkeyframes`);
-        this.meta.updateTag({ name: 'description', content: `Viewing the ${this.album.title} album.` });
+        this.seo.setSEO({
+          title: this.album.title,
+          description: `Viewing the ${this.album.title} album.`,
+          path: `/album/${id}`,
+          image: this.album.cover
+        });
+        this.seo.setBreadcrumb([
+          { name: 'Home', url: 'https://lowkeyframes.com/' },
+          { name: 'Portfolio', url: 'https://lowkeyframes.com/portfolio' },
+          { name: this.album.title, url: `https://lowkeyframes.com/album/${id}` }
+        ]);
       } catch (err) {
         console.error('Failed to load S3 objects', err);
       }

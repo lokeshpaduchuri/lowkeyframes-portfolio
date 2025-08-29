@@ -1,9 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { SeoService } from '../../services/seo.service';
 
 interface ContactCategory {
   id: string;
@@ -84,14 +84,16 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private titleService: Title,
-    private meta: Meta,
+    private seo: SeoService,
     private renderer: Renderer2
   ) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Contact - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Send a message to connect with Lowkeyframes.' });
+    this.seo.setSEO({
+      title: 'Contact',
+      description: 'Send a message to connect with Lowkeyframes.',
+      path: '/contact'
+    });
   }
 
   selectCategory(cat: ContactCategory) {
@@ -151,4 +153,3 @@ export class ContactComponent implements OnInit {
     this.selectedCategory = undefined;
   }
 }
-

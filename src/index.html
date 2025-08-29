@@ -5,10 +5,53 @@
   <title>Professional Photographer in McKinney TX | LowKey Frames</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Primary description (keep one) -->
   <meta name="description" content="Capture heartfelt moments with Low Key Frames in McKinney. Book your family photo session today!">
-  <meta name="description" content="Portfolio of LowKey Frames – photography and professional projects">
-  <meta name="robots" content="index, follow">
+  <!-- Robots default; overridden by SeoService in non-prod -->
+  <meta name="robots" content="index,follow">
+  <!-- Canonical default for home; per-route canonical set via SeoService -->
+  <link rel="canonical" href="https://lowkeyframes.com/">
+  <!-- Open Graph defaults -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LowKey Frames">
+  <meta property="og:title" content="Professional Photographer in McKinney TX | LowKey Frames">
+  <meta property="og:description" content="Capture heartfelt moments with Low Key Frames in McKinney. Book your family photo session today!">
+  <meta property="og:url" content="https://lowkeyframes.com/">
+  <!-- Replace with a 1200x630 PNG in /assets/opengraph-default.png for best compatibility -->
+  <meta property="og:image" content="https://lowkeyframes.com/assets/hero.webp">
+  <meta property="og:locale" content="en_US">
+  <!-- Twitter Card defaults -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Professional Photographer in McKinney TX | LowKey Frames">
+  <meta name="twitter:description" content="Capture heartfelt moments with Low Key Frames in McKinney. Book your family photo session today!">
+  <meta name="twitter:image" content="https://lowkeyframes.com/assets/hero.webp">
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://lowkeyframescontent.s3.us-east-1.amazonaws.com" crossorigin>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Organization & WebSite JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "LowKey Frames",
+    "url": "https://lowkeyframes.com",
+    "logo": "https://lowkeyframes.com/favicon.ico",
+    "sameAs": ["https://instagram.com/lowkey.frames"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "LowKey Frames",
+    "url": "https://lowkeyframes.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://lowkeyframes.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body>
   <app-root></app-root>

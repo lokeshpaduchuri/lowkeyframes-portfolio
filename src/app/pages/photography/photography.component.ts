@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   standalone: true,
@@ -18,8 +18,7 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   private coverInterval?: ReturnType<typeof setInterval>;
 
   constructor(
-    private titleService: Title,
-    private meta: Meta,
+    private seo: SeoService,
     private s3: AwsS3Service
   ) {}
 
@@ -31,8 +30,11 @@ export class PhotographyComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.titleService.setTitle('Photography - Lowkeyframes');
-    this.meta.updateTag({ name: 'description', content: 'Explore photography albums showcasing diverse stories and portraits.' });
+    this.seo.setSEO({
+      title: 'Photography',
+      description: 'Explore photography albums showcasing diverse stories and portraits.',
+      path: '/photography'
+    });
 
     try {
       const bucket = environment.aws.bucket;
@@ -118,4 +120,3 @@ export class PhotographyComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 }
-

@@ -8,6 +8,7 @@ import { AlbumViewerComponent } from './pages/album-viewer/album-viewer.componen
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { animation: 'HomePage' } },
@@ -22,8 +23,7 @@ export const routes: Routes = [
   // New route for album carousel view
   { path: 'album/:id', component: AlbumViewerComponent, data: { animation: 'AlbumViewerPage' } },
 
-  // Wildcard route to catch unknown URLs and redirect home
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  // Wildcard route to catch unknown URLs and show 404
+  { path: '**', component: NotFoundComponent, data: { animation: 'NotFoundPage' } },
 ];
-
 
