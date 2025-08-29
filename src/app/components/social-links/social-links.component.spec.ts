@@ -27,6 +27,11 @@ describe('SocialLinksComponent', () => {
     expect(anchor.textContent?.trim()).toContain('Follow on Instagram');
   });
 
+  it('applies label as title attribute', () => {
+    const anchor: HTMLElement = fixture.nativeElement.querySelector('a');
+    expect(anchor.getAttribute('title')).toBe('Follow on Instagram');
+  });
+
   it('renders sr-only spans when labels are hidden', () => {
     component.showLabels = false;
     fixture.detectChanges();
