@@ -24,7 +24,7 @@ describe('SocialLinksComponent', () => {
     component.showLabels = true;
     fixture.detectChanges();
     const anchor: HTMLElement = fixture.nativeElement.querySelector('a');
-    expect(anchor.textContent?.trim()).toContain('Instagram');
+    expect(anchor.textContent?.trim()).toContain('Follow on Instagram');
   });
 
   it('renders sr-only spans when labels are hidden', () => {
