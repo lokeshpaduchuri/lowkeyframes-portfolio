@@ -24,14 +24,14 @@ describe('SocialLinksComponent', () => {
     component.showLabels = true;
     fixture.detectChanges();
     const span: HTMLElement = fixture.nativeElement.querySelector('a span:last-child');
-    expect(span.textContent?.trim()).toBe('Follow on Instagram');
+    expect(span.textContent?.trim()).toBe('Follow lowkey.frames on Instagram');
     expect(span.classList).toContain('ml-2');
     expect(span.classList).not.toContain('sr-only');
   });
 
   it('applies label as title attribute', () => {
     const anchor: HTMLElement = fixture.nativeElement.querySelector('a');
-    expect(anchor.getAttribute('title')).toBe('Follow on Instagram');
+    expect(anchor.getAttribute('title')).toBe('Follow lowkey.frames on Instagram');
   });
 
   it('hides labels visually when showLabels is false', () => {
