@@ -1,5 +1,20 @@
 # lowkeyframes-portfolio
 
+Portfolio website for lowkey.frames and twinedheartsbyloki.
+
+## Project Overview
+- Displays photography albums stored in AWS S3
+- Responsive design powered by Tailwind CSS and Swiper galleries
+- Server-side rendering with Angular Universal and Express
+- Sitemap generation via `scripts/generate-sitemap.mjs`
+
+## Framework & Tools
+- Angular 17 with TypeScript
+- Angular Universal (SSR) using Express
+- Tailwind CSS 3 for styling
+- AWS SDK for S3 integration
+- Karma and Jasmine for unit tests
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
 ## Development server
