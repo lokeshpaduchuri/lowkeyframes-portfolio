@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
 import { SeoService } from '../../services/seo.service';
+import { AlbumEngagementService } from '../../services/album-engagement.service';
 
 @Component({
   selector: 'app-album-viewer',
@@ -23,7 +24,8 @@ export class AlbumViewerComponent implements OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private s3: AwsS3Service,
-    private seo: SeoService
+    private seo: SeoService,
+    private albumEngagement: AlbumEngagementService
   ) {
     this.paramSub = this.route.params.subscribe(async params => {
       const id = params['id'];
@@ -64,6 +66,7 @@ export class AlbumViewerComponent implements OnDestroy {
           { name: 'Portfolio', url: 'https://lowkeyframes.com/portfolio' },
           { name: this.album.title, url: `https://lowkeyframes.com/album/${id}` }
         ]);
+        this.albumEngagement.initTimer(id, this.album.title);
       } catch (err) {
         console.error('Failed to load S3 objects', err);
       }
@@ -72,6 +75,7 @@ export class AlbumViewerComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.paramSub?.unsubscribe();
+    this.albumEngagement.destroy();
   }
 
   goBack() {
@@ -80,3 +84,4 @@ export class AlbumViewerComponent implements OnDestroy {
     }
   }
 }
+

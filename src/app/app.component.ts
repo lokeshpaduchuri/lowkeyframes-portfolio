@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet, Scroll } from '@angular/router';
 import { trigger, transition, style, animate, query, group } from '@angular/animations';
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { FooterComponent } from "./components/footer/footer.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { EngagementToastComponent } from './components/engagement-toast/engagement-toast.component';
 import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs';
 
@@ -10,13 +11,14 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, EngagementToastComponent],
   template: `
     <app-navbar></app-navbar>
     <main class="pt-10 min-h-[calc(100vh-4rem)] text-white" [@routeAnimations]="prepareRoute(outlet)">
   <router-outlet #outlet="outlet"></router-outlet>
 </main>
     <app-footer></app-footer>
+    <app-engagement-toast></app-engagement-toast>
   `,
   animations: [
   trigger('routeAnimations', [
@@ -64,3 +66,4 @@ export class AppComponent {
     return outlet?.activatedRouteData?.['animation'] || null;
   }
 }
+
