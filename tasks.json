@@ -1,0 +1,331 @@
+[
+  {
+    "id": "T-001",
+    "type": "bugfix",
+    "title": "Enforce deterministic album cover selection",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "portfolio",
+    "risk": "low",
+    "acceptance": [
+      "Album covers do not change between reloads unless source data changes",
+      "No timer-driven or random rotation logic remains"
+    ],
+    "files_hint": [
+      "src/app/pages/portfolio/portfolio.component.ts",
+      "src/app/data/albums.ts"
+    ],
+    "notes": "Stability improves recognition and avoids motion distraction."
+  },
+  {
+    "id": "T-002",
+    "type": "perf",
+    "title": "Stabilize image aspect ratios to reduce CLS",
+    "priority": "P0",
+    "status": "todo",
+    "scope": "album",
+    "risk": "medium",
+    "acceptance": [
+      "Portfolio and album images reserve layout space before load",
+      "CLS improvements are visible during manual route smoke checks"
+    ],
+    "files_hint": [
+      "src/app/pages/portfolio/portfolio.component.html",
+      "src/app/pages/album-viewer/album-viewer.component.html",
+      "src/app/pages/portfolio/portfolio.component.scss"
+    ],
+    "notes": "Use explicit dimensions or CSS aspect-ratio wrappers."
+  },
+  {
+    "id": "T-003",
+    "type": "seo",
+    "title": "Expand route-level metadata and OG coverage",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "seo",
+    "risk": "medium",
+    "acceptance": [
+      "Title and description are set for key routes",
+      "OG tags resolve correctly for portfolio and album routes"
+    ],
+    "files_hint": [
+      "src/app/services/seo.service.ts",
+      "src/app/pages/portfolio/portfolio.component.ts",
+      "src/app/pages/album-viewer/album-viewer.component.ts"
+    ],
+    "notes": "Keep SSR-safe metadata updates."
+  },
+  {
+    "id": "T-004",
+    "type": "seo",
+    "title": "Add JSON-LD for organization and image gallery context",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "seo",
+    "risk": "medium",
+    "acceptance": [
+      "Structured data is valid for organization details",
+      "Album/gallery pages emit relevant schema entries"
+    ],
+    "files_hint": [
+      "src/app/services/seo.service.ts",
+      "src/app/pages/album-viewer/album-viewer.component.ts"
+    ],
+    "notes": "Validate output with rich results test when possible."
+  },
+  {
+    "id": "T-005",
+    "type": "bugfix",
+    "title": "Accessibility pass for image alt and aria labels",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "sitewide",
+    "risk": "medium",
+    "acceptance": [
+      "Decorative images are properly marked",
+      "Interactive controls expose clear aria labels",
+      "Album and portfolio alt text is descriptive"
+    ],
+    "files_hint": [
+      "src/app/pages/portfolio/portfolio.component.html",
+      "src/app/pages/album-viewer/album-viewer.component.html",
+      "src/app/components/navbar/navbar.component.html"
+    ],
+    "notes": "Prefer concise, context-specific labels."
+  },
+  {
+    "id": "T-006",
+    "type": "seo",
+    "title": "Verify sitemap generation for all active routes",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "build",
+    "risk": "low",
+    "acceptance": [
+      "Sitemap includes expected public routes",
+      "Deprecated or invalid routes are excluded"
+    ],
+    "files_hint": [
+      "scripts/generate-sitemap.mjs",
+      "src/app/app.routes.ts"
+    ],
+    "notes": "Triggered during prebuild."
+  },
+  {
+    "id": "T-007",
+    "type": "upgrade",
+    "title": "Document Angular upgrade plan and blockers",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "build",
+    "risk": "medium",
+    "acceptance": [
+      "Target versions and migration sequence are documented",
+      "Breaking changes and fallback notes are captured"
+    ],
+    "files_hint": [
+      "package.json",
+      "AGENTS.md",
+      "ROADMAP.md"
+    ],
+    "notes": "Keep upgrades isolated from feature work."
+  },
+  {
+    "id": "T-008",
+    "type": "perf",
+    "title": "Constrain page transitions to essential state changes",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "sitewide",
+    "risk": "low",
+    "acceptance": [
+      "No decorative looping animations on core routes",
+      "Transitions are subtle and context-driven"
+    ],
+    "files_hint": [
+      "src/app/app.component.ts",
+      "src/app/pages/home/home.component.scss"
+    ],
+    "notes": "Keep calm hierarchy and reduce cognitive load."
+  },
+  {
+    "id": "T-009",
+    "type": "feature",
+    "title": "Add optional analytics integration placeholder",
+    "priority": "P3",
+    "status": "todo",
+    "scope": "sitewide",
+    "risk": "low",
+    "acceptance": [
+      "Analytics can be toggled off by default",
+      "No blocking scripts in initial render path"
+    ],
+    "files_hint": [
+      "src/index.html",
+      "src/environments"
+    ],
+    "notes": "Privacy-first and defer loading."
+  },
+  {
+    "id": "T-010",
+    "type": "content",
+    "title": "Refresh About page narrative for concise brand positioning",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "about",
+    "risk": "low",
+    "acceptance": [
+      "Copy is concise and consistent with portfolio tone",
+      "No layout regression in About route"
+    ],
+    "files_hint": [
+      "src/app/pages/about/about.component.html"
+    ],
+    "notes": "Keep authentic voice and remove fluff."
+  },
+  {
+    "id": "T-011",
+    "type": "feature",
+    "title": "Improve portfolio grid responsiveness at tablet breakpoints",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "portfolio",
+    "risk": "medium",
+    "acceptance": [
+      "Grid balances tile density and readability on tablet widths",
+      "No overflow or clipped content"
+    ],
+    "files_hint": [
+      "src/app/pages/portfolio/portfolio.component.scss",
+      "src/app/pages/portfolio/portfolio.component.html"
+    ],
+    "notes": "Target premium editorial look without visual clutter."
+  },
+  {
+    "id": "T-012",
+    "type": "bugfix",
+    "title": "Ensure fixed back overlay remains stable on album detail",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "album",
+    "risk": "low",
+    "acceptance": [
+      "Back control does not jitter during scroll",
+      "Overlay remains legible across image backgrounds"
+    ],
+    "files_hint": [
+      "src/app/pages/album-viewer/album-viewer.component.scss",
+      "src/app/pages/album-viewer/album-viewer.component.html"
+    ],
+    "notes": "Preserve behavior learned from prior iterations."
+  },
+  {
+    "id": "T-013",
+    "type": "perf",
+    "title": "Audit Swiper usage and reduce non-essential modules",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "sitewide",
+    "risk": "medium",
+    "acceptance": [
+      "Only required Swiper modules are imported",
+      "No user-visible regression on carousel pages"
+    ],
+    "files_hint": [
+      "src/app/pages/home/home.component.ts",
+      "src/app/pages/photography/photography.component.ts"
+    ],
+    "notes": "Supports bundle-size control."
+  },
+  {
+    "id": "T-014",
+    "type": "seo",
+    "title": "Align canonical URLs and social preview image defaults",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "seo",
+    "risk": "low",
+    "acceptance": [
+      "Canonical URL reflects active route",
+      "Fallback OG image is set for pages missing custom media"
+    ],
+    "files_hint": [
+      "src/app/services/seo.service.ts"
+    ],
+    "notes": "Keep canonical generation deterministic."
+  },
+  {
+    "id": "T-015",
+    "type": "refactor",
+    "title": "Centralize reusable image helper utilities",
+    "priority": "P2",
+    "status": "todo",
+    "scope": "sitewide",
+    "risk": "medium",
+    "acceptance": [
+      "Shared helper replaces duplicate image formatting logic",
+      "No behavior drift in album and portfolio routes"
+    ],
+    "files_hint": [
+      "src/app/services",
+      "src/app/pages/portfolio/portfolio.component.ts",
+      "src/app/pages/album-viewer/album-viewer.component.ts"
+    ],
+    "notes": "Refactor only after tests/visual checks are defined."
+  },
+  {
+    "id": "T-016",
+    "type": "content",
+    "title": "Create route-specific meta description drafts",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "seo",
+    "risk": "low",
+    "acceptance": [
+      "Each key route has a concise description draft",
+      "Descriptions avoid duplication across pages"
+    ],
+    "files_hint": [
+      "src/app/services/seo.service.ts",
+      "src/app/pages/home/home.component.ts",
+      "src/app/pages/contact/contact.component.ts"
+    ],
+    "notes": "Support editorial + technical SEO coordination."
+  },
+  {
+    "id": "T-017",
+    "type": "upgrade",
+    "title": "Review Tailwind config for forward compatibility",
+    "priority": "P3",
+    "status": "todo",
+    "scope": "build",
+    "risk": "low",
+    "acceptance": [
+      "Custom tokens/utilities are documented",
+      "Potential migration blockers are listed"
+    ],
+    "files_hint": [
+      "tailwind.config.js",
+      "src/styles.scss"
+    ],
+    "notes": "Track readiness for future Tailwind major versions."
+  },
+  {
+    "id": "T-018",
+    "type": "bugfix",
+    "title": "Remove stacked hover transform conflicts on cards",
+    "priority": "P1",
+    "status": "todo",
+    "scope": "home",
+    "risk": "low",
+    "acceptance": [
+      "Single hover transform strategy applied",
+      "No abrupt jumpiness on pointer enter/leave"
+    ],
+    "files_hint": [
+      "src/app/pages/home/home.component.scss",
+      "src/app/pages/portfolio/portfolio.component.scss"
+    ],
+    "notes": "Guardrail from recent UX regressions."
+  }
+]
