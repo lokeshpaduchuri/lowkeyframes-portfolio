@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
@@ -12,8 +12,9 @@ import { SeoService } from '../../services/seo.service';
   imports: [RouterModule, CommonModule],
   templateUrl: './portfolio.component.html',
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent implements OnInit, OnDestroy {
   albums: Album[] = [];
+  private coverInterval?: ReturnType<typeof setInterval>;
 
   constructor(
     private seo: SeoService,
@@ -59,18 +60,28 @@ export class PortfolioComponent implements OnInit {
 
         const fetchedAlbums = fetched.filter((a): a is Album => !!a);
         const map = new Map(fetchedAlbums.map(a => [a.id, a]));
-        this.albums = ALBUMS.map(a => map.get(a.id) || a);
+        this.albums = this.withSafeFallbackCovers(ALBUMS.map(a => map.get(a.id) || a));
         fetchedAlbums.forEach(a => {
           if (!ALBUMS.find(alb => alb.id === a.id)) {
             this.albums.push(a);
           }
         });
       } else {
-        this.albums = ALBUMS;
+        this.albums = this.withSafeFallbackCovers(ALBUMS);
       }
     } catch (err) {
       console.error('Failed to load albums', err);
-      this.albums = ALBUMS;
+      this.albums = this.withSafeFallbackCovers(ALBUMS);
+    }
+
+    if (typeof window !== 'undefined') {
+      this.startCoverRotation();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.coverInterval) {
+      clearInterval(this.coverInterval);
     }
   }
 
@@ -93,5 +104,32 @@ export class PortfolioComponent implements OnInit {
     }
 
     album.loadError = true;
+  }
+
+  private startCoverRotation() {
+    this.coverInterval = setInterval(() => {
+      this.albums.forEach(album => {
+        if (!album.images.length) {
+          return;
+        }
+
+        const currentIndex = album.images.indexOf(album.cover);
+        const nextIndex = currentIndex >= 0
+          ? (currentIndex + 1) % album.images.length
+          : 0;
+
+        album.cover = album.images[nextIndex];
+        album.coverIndex = nextIndex;
+        album.loaded = false;
+        album.loadError = false;
+      });
+    }, 5000);
+  }
+
+  private withSafeFallbackCovers(albums: Album[]) {
+    return albums.map(album => ({
+      ...album,
+      cover: album.images[0] || album.cover || '/assets/favicon.svg'
+    }));
   }
 }
