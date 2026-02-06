@@ -42,7 +42,7 @@ export class PortfolioComponent implements OnInit {
             }
 
             const coverFromS3 = s3Images.find(img => img.includes('cover'));
-            const cover = coverFromS3 || local?.cover || images[0];
+            const cover = coverFromS3 || images[0] || local?.cover;
             const title = local?.title || id.replace(/-/g, ' ');
             const description = local?.description || '';
 
@@ -72,5 +72,26 @@ export class PortfolioComponent implements OnInit {
       console.error('Failed to load albums', err);
       this.albums = ALBUMS;
     }
+  }
+
+  onCoverError(album: Album) {
+    const fallback = '/assets/favicon.svg';
+    const nextImage = album.images.find(img => img !== album.cover);
+
+    if (nextImage) {
+      album.cover = nextImage;
+      album.loaded = false;
+      album.loadError = false;
+      return;
+    }
+
+    if (album.cover !== fallback) {
+      album.cover = fallback;
+      album.loaded = false;
+      album.loadError = false;
+      return;
+    }
+
+    album.loadError = true;
   }
 }

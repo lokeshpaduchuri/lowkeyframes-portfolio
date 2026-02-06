@@ -19,7 +19,7 @@
           class="absolute inset-0 h-full w-full object-cover fade-in"
           [class.loaded]="album.loaded"
           (load)="album.loaded = true"
-          (error)="album.loadError = true"
+          (error)="onCoverError(album)"
         />
         <div
           *ngIf="!album.loaded || album.loadError"
