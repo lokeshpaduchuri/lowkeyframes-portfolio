@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ALBUMS, Album } from '../../data/albums';
 import { AwsS3Service } from '../../services/aws-s3.service';
 import { environment } from '../../../environments/environment';
@@ -43,7 +43,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
             }
 
             const coverFromS3 = s3Images.find(img => img.includes('cover'));
-            const cover = coverFromS3 || local?.cover || images[0];
+            const cover = coverFromS3 || images[0] || local?.cover;
             const title = local?.title || id.replace(/-/g, ' ');
             const description = local?.description || '';
 
@@ -60,19 +60,20 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
         const fetchedAlbums = fetched.filter((a): a is Album => !!a);
         const map = new Map(fetchedAlbums.map(a => [a.id, a]));
-        this.albums = ALBUMS.map(a => map.get(a.id) || a);
+        this.albums = this.withSafeFallbackCovers(ALBUMS.map(a => map.get(a.id) || a));
         fetchedAlbums.forEach(a => {
           if (!ALBUMS.find(alb => alb.id === a.id)) {
             this.albums.push(a);
           }
         });
       } else {
-        this.albums = ALBUMS;
+        this.albums = this.withSafeFallbackCovers(ALBUMS);
       }
     } catch (err) {
       console.error('Failed to load albums', err);
-      this.albums = ALBUMS;
+      this.albums = this.withSafeFallbackCovers(ALBUMS);
     }
+
     if (typeof window !== 'undefined') {
       this.startCoverRotation();
     }
@@ -84,21 +85,51 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     }
   }
 
-  private startCoverRotation() {
-    if (typeof window === 'undefined') {
+  onCoverError(album: Album) {
+    const fallback = '/assets/favicon.svg';
+    const nextImage = album.images.find(img => img !== album.cover);
+
+    if (nextImage) {
+      album.cover = nextImage;
+      album.loaded = false;
+      album.loadError = false;
       return;
     }
+
+    if (album.cover !== fallback) {
+      album.cover = fallback;
+      album.loaded = false;
+      album.loadError = false;
+      return;
+    }
+
+    album.loadError = true;
+  }
+
+  private startCoverRotation() {
     this.coverInterval = setInterval(() => {
       this.albums.forEach(album => {
-        if (album.images && album.images.length > 1) {
-          const idx = typeof album.coverIndex === 'number' ? album.coverIndex : 0;
-          const next = (idx + 1) % album.images.length;
-          album.coverIndex = next;
-          album.cover = album.images[next];
-          album.loaded = false;
-          album.loadError = false;
+        if (!album.images.length) {
+          return;
         }
+
+        const currentIndex = album.images.indexOf(album.cover);
+        const nextIndex = currentIndex >= 0
+          ? (currentIndex + 1) % album.images.length
+          : 0;
+
+        album.cover = album.images[nextIndex];
+        album.coverIndex = nextIndex;
+        album.loaded = false;
+        album.loadError = false;
       });
     }, 5000);
+  }
+
+  private withSafeFallbackCovers(albums: Album[]) {
+    return albums.map(album => ({
+      ...album,
+      cover: album.images[0] || album.cover || '/assets/favicon.svg'
+    }));
   }
 }

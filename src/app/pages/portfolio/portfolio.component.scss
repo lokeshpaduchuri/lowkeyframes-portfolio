@@ -2,23 +2,4 @@
   section {
     @apply min-h-screen bg-zinc-900 text-white;
   }
-
-  .group {
-    @apply mb-6 break-inside-avoid;
-    transition: transform 0.3s ease;
-
-    img {
-      transition: transform 0.3s ease;
-    }
-
-    &:hover {
-      img {
-        transform: scale(1.05);
-      }
-
-      .absolute {
-        opacity: 1;
-      }
-    }
-  }
 }

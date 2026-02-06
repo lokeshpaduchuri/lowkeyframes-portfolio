@@ -67,7 +67,7 @@
   border-radius: 0.5rem;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor: pointer;
   width: 100%;
 }
@@ -77,13 +77,9 @@
 }
 
 .contact__category:hover {
-  transform: scale(1.03);
-  border-color: #00FF88;
-  box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
-}
-
-.contact__category:active {
-  transform: scale(0.98);
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
 }
 
 .contact__form {
@@ -157,6 +153,7 @@ html.dark-mode .contact__input {
 }
 
 html.dark-mode .contact__category:hover {
-  border-color: #00FF88;
-  box-shadow: 0 0 8px #00FF88;
+  border-color: #334155;
+  background: #111827;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.6);
 }
