@@ -2,28 +2,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-.typing {
-  display: inline-block;
-  width: fit-content;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid white;
-  max-width: 0;
-  animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from {
-    max-width: 0;
-  }
-  to {
-    max-width: 100%;
-    overflow: visible;
-  }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-

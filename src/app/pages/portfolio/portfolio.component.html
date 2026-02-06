@@ -1,42 +1,5 @@
 <section class="min-h-screen bg-lemon text-emerald px-4 sm:px-8 py-12">
   <h1 class="text-4xl font-bold text-green-500 text-center mb-2">Portfolio</h1>
-  <div class="flex flex-wrap justify-center gap-4 mt-0 mb-10">
-    <span
-      class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
-      role="button"
-      tabindex="0"
-    >
-      💛 Family &amp; Kids
-    </span>
-    <span
-      class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
-      role="button"
-      tabindex="0"
-    >
-      💍 Events &amp; Celebrations
-    </span>
-    <span
-      class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
-      role="button"
-      tabindex="0"
-    >
-      ✨ Fashion &amp; Editorial
-    </span>
-    <span
-      class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
-      role="button"
-      tabindex="0"
-    >
-      🌄 Travel &amp; Landscape
-    </span>
-    <span
-      class="text-green-400 font-semibold text-lg hover:underline hover:scale-105 transition cursor-pointer"
-      role="button"
-      tabindex="0"
-    >
-      🚁 Drone &amp; Aerial
-    </span>
-  </div>
 
   <div
     class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10"
@@ -44,16 +7,16 @@
     <a
       *ngFor="let album of albums"
       [routerLink]="['/album', album.id]"
-      class="group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
+      class="block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-md hover:shadow-lg transition-shadow"
     >
-      <div class="relative">
+      <div class="relative aspect-[4/3] bg-gray-100">
         <img
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
           decoding="async"
           [attr.sizes]="'(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'"
-          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
+          class="absolute inset-0 h-full w-full object-cover fade-in"
           [class.loaded]="album.loaded"
           (load)="album.loaded = true"
           (error)="album.loadError = true"
@@ -72,19 +35,9 @@
           </svg>
           <span class="sr-only">{{ album.title }} placeholder</span>
         </div>
-        <div
-          *ngIf="!album.images.length"
-          class="absolute inset-0 bg-black/70 flex items-center justify-center text-white font-semibold transition-opacity group-hover:opacity-0"
-        >
-          Coming Soon
-        </div>
-        <div
-          class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <h3 class="text-xl font-semibold text-white">{{ album.title }}</h3>
-        </div>
       </div>
       <div class="p-4">
+        <h3 class="text-lg font-semibold text-emerald mb-1">{{ album.title }}</h3>
         <p class="text-charcoal text-sm">{{ album.description }}</p>
       </div>
     </a>

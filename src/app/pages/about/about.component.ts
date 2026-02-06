@@ -10,7 +10,6 @@ import { SeoService } from '../../services/seo.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  typingDone = false;
   constructor(private seo: SeoService) {}
 
   ngOnInit() {
