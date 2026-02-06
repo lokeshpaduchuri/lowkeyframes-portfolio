@@ -1,0 +1,22 @@
+# Progress Log
+
+Append-only. Add a new entry at the end for each meaningful task update.
+
+## Entry Template
+Date: YYYY-MM-DD
+Task ID: T-000
+Summary: One-line description of what changed.
+Files: path/to/file1, path/to/file2
+Commands Run: npm run build; npm test
+Result: pass | fail | blocked
+Notes: Follow-ups, blockers, or rollback notes.
+
+---
+
+Date: 2026-02-06
+Task ID: DOC-001
+Summary: Initialized documentation workflow artifacts and restructured AGENTS handbook.
+Files: AGENTS.md, ROADMAP.md, tasks.json, quality-gates.md, progress.log, content/meet-your-agents.md, prompts/portfolio-optimization-prompt.md
+Commands Run: npm run build; npm test
+Result: blocked
+Notes: `npm run build` generated sitemap in prebuild, but both build/test are blocked because Angular CLI (`ng`) is unavailable in this environment.
