@@ -1,14 +1,20 @@
 .contact {
+  width: 100%;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 3rem 0;
+}
+
+.contact__inner {
   padding: 1.5rem;
   max-width: 48rem;
   margin: 0 auto;
-  color: #e5e7eb;
-  background: #111827;
   text-align: center;
   min-height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 3rem;
 }
 
 .contact__header {

@@ -1,51 +1,53 @@
 <section class="contact">
-  <header class="contact__header">
-    <h1 class="contact__title">Let’s Frame Your Story</h1>
-    <!-- <button class="contact__toggle" (click)="toggleTheme()">
-      {{ darkMode ? '☀️' : '🌙' }}
-    </button> -->
-  </header>
-  <p class="contact__subtitle">Let us tell your story — just pick how it starts.</p>
-  <p *ngIf="submitted" class="contact__success">Hey {{ submittedName || 'friend' }}! 🎞️ Thanks for reaching out — can’t wait to frame your story.</p>
+  <div class="contact__inner">
+    <header class="contact__header">
+      <h1 class="contact__title">Let’s Frame Your Story</h1>
+      <!-- <button class="contact__toggle" (click)="toggleTheme()">
+        {{ darkMode ? '☀️' : '🌙' }}
+      </button> -->
+    </header>
+    <p class="contact__subtitle">Let us tell your story — just pick how it starts.</p>
+    <p *ngIf="submitted" class="contact__success">Hey {{ submittedName || 'friend' }}! 🎞️ Thanks for reaching out — can’t wait to frame your story.</p>
 
-  <div *ngIf="step === 1" @fade class="contact__categories">
-    <p class="contact__question">What are you looking for?</p>
-    <div class="contact__grid">
-      <button
-        *ngFor="let cat of categories"
-        class="contact__category"
-        (click)="selectCategory(cat)"
-      >
-        <span class="contact__category-emoji">{{ cat.icon }}</span>
-        <span class="contact__category-label">{{ cat.label }}</span>
+    <div *ngIf="step === 1" @fade class="contact__categories">
+      <p class="contact__question">What are you looking for?</p>
+      <div class="contact__grid">
+        <button
+          *ngFor="let cat of categories"
+          class="contact__category"
+          (click)="selectCategory(cat)"
+        >
+          <span class="contact__category-emoji">{{ cat.icon }}</span>
+          <span class="contact__category-label">{{ cat.label }}</span>
+        </button>
+      </div>
+    </div>
+
+    <form *ngIf="step === 2 && !submitted" #form="ngForm" @fade (ngSubmit)="onSubmitForm()" class="contact__form">
+      <button type="button" class="contact__back" (click)="backToCategories()">← back</button>
+      <p class="contact__intro">
+        <span class="contact__intro-emoji">{{ selectedCategory?.icon }}</span>
+        {{ selectedCategory?.intro }}
+      </p>
+      <div class="contact__field">
+        <label class="contact__label" for="name">Name</label>
+        <input id="name" name="name" [(ngModel)]="name" required class="contact__input" />
+      </div>
+      <div class="contact__field">
+        <label class="contact__label" for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="email" required class="contact__input" />
+      </div>
+      <div class="contact__field">
+        <label class="contact__label" for="message">Message</label>
+        <textarea id="message" name="message" rows="4" [(ngModel)]="message" required class="contact__input" [placeholder]="selectedCategory?.placeholder"></textarea>
+      </div>
+      <div class="contact__field">
+        <label class="contact__label" for="creativeTitle">If this shoot had a movie title, what would it be?</label>
+        <input id="creativeTitle" name="creativeTitle" [(ngModel)]="creativeTitle" class="contact__input" />
+      </div>
+      <button type="submit" [disabled]="!form.valid" class="contact__submit">
+        {{ selectedCategory?.cta }}
       </button>
-    </div>
+    </form>
   </div>
-
-  <form *ngIf="step === 2 && !submitted" #form="ngForm" @fade (ngSubmit)="onSubmitForm()" class="contact__form">
-    <button type="button" class="contact__back" (click)="backToCategories()">← back</button>
-    <p class="contact__intro">
-      <span class="contact__intro-emoji">{{ selectedCategory?.icon }}</span>
-      {{ selectedCategory?.intro }}
-    </p>
-    <div class="contact__field">
-      <label class="contact__label" for="name">Name</label>
-      <input id="name" name="name" [(ngModel)]="name" required class="contact__input" />
-    </div>
-    <div class="contact__field">
-      <label class="contact__label" for="email">Email</label>
-      <input id="email" name="email" type="email" [(ngModel)]="email" required class="contact__input" />
-    </div>
-    <div class="contact__field">
-      <label class="contact__label" for="message">Message</label>
-      <textarea id="message" name="message" rows="4" [(ngModel)]="message" required class="contact__input" [placeholder]="selectedCategory?.placeholder"></textarea>
-    </div>
-    <div class="contact__field">
-      <label class="contact__label" for="creativeTitle">If this shoot had a movie title, what would it be?</label>
-      <input id="creativeTitle" name="creativeTitle" [(ngModel)]="creativeTitle" class="contact__input" />
-    </div>
-    <button type="submit" [disabled]="!form.valid" class="contact__submit">
-      {{ selectedCategory?.cta }}
-    </button>
-  </form>
 </section>
