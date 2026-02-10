@@ -7,9 +7,9 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, #4ade80 0%, transparent 100%);
-    opacity: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #4ade80 0%, #4ade80 50%, transparent 100%);
+    opacity: 0.2;
     transition: opacity 0.3s ease;
   }
 
