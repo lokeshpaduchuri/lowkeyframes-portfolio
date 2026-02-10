@@ -1,21 +1,21 @@
-<section id="testimonials" aria-labelledby="client-reviews-heading" class="min-h-screen bg-lavender text-charcoal px-4 py-12">
-  <h1 id="client-reviews-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8">Client Reviews</h1>
+<section id="testimonials" aria-labelledby="client-reviews-heading" class="min-h-screen bg-zinc-900 text-gray-100 px-4 py-12 pt-20">
+  <h1 id="client-reviews-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8 text-white">Client Reviews</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-6" @listAnimation>
     <article
       *ngFor="let review of reviews; let i = index"
-      class="relative overflow-hidden bg-white/80 dark:bg-zinc-900/90 text-zinc-800 dark:text-white backdrop-blur-md rounded-xl p-6 shadow-lg break-inside-avoid hover:shadow-2xl hover:scale-[1.01] active:scale-[0.98] transition-transform ease-in-out duration-300"
+      class="review-card relative overflow-hidden bg-zinc-800 text-gray-100 backdrop-blur-md rounded-xl p-6 shadow-lg break-inside-avoid hover:shadow-2xl active:scale-[0.98] transition-all ease-in-out duration-300"
       itemscope itemtype="https://schema.org/Review"
       aria-label="Client testimonial"
       appInView
       (inViewChange)="onInView(i)"
       [@fadeUp]="visible[i] ? 'visible' : 'hidden'"
     >
-      <blockquote class="text-base md:text-lg leading-relaxed flex" itemprop="reviewBody">
-        <span class="before:content-['\201C'] before:text-4xl before:mr-2 before:text-emerald-500"></span>
-        {{ review.text }}
+      <blockquote class="text-base md:text-lg leading-relaxed flex gap-2" itemprop="reviewBody">
+        <span class="quote-mark flex-shrink-0 text-6xl font-bold text-emerald-400/40 leading-none">❝</span>
+        <span>{{ review.text }}</span>
       </blockquote>
       <footer
-        class="font-semibold text-sm text-right text-zinc-500 dark:text-zinc-400 mt-4"
+        class="font-semibold text-sm text-right text-emerald-400 mt-4"
         itemprop="author"
         itemscope
         itemtype="https://schema.org/Person"

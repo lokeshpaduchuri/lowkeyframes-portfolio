@@ -1,6 +1,6 @@
-<section class="min-h-screen bg-lemon text-emerald px-4 sm:px-8 py-12">
-  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-4">Photography Albums</h1>
-  <ul class="text-center mb-10 space-y-1">
+<section class="min-h-screen bg-zinc-900 text-white px-4 sm:px-8 py-12 pt-20">
+  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-4 text-white">Photography Albums</h1>
+  <ul class="text-center mb-10 space-y-1 text-gray-300">
     <li>🧡 <span class="font-semibold">Family &amp; Kids</span></li>
     <li>💍 <span class="font-semibold">Events &amp; Celebrations</span></li>
     <li>✨ <span class="font-semibold">Fashion &amp; Editorial</span></li>
@@ -13,16 +13,16 @@
     <a
       *ngFor="let album of albums"
       [routerLink]="['/album', album.id]"
-      class="group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-mint shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
+      class="group block mb-6 break-inside-avoid rounded-xl overflow-hidden bg-zinc-800 shadow-lg hover:shadow-xl transition-transform transform hover:scale-[1.02] border border-transparent hover:border-green-500"
     >
-      <div class="relative">
+      <div class="relative aspect-[4/3] overflow-hidden">
         <img
           [src]="album.cover"
           [alt]="album.title"
           loading="lazy"
           decoding="async"
           [attr.sizes]="'(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'"
-          class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 fade-in"
           [class.loaded]="album.loaded"
           (load)="album.loaded = true"
           (error)="album.loadError = true"
@@ -53,8 +53,8 @@
           <h3 class="text-xl font-semibold text-white">{{ album.title }}</h3>
         </div>
       </div>
-      <div class="p-4">
-        <p class="text-charcoal text-sm">{{ album.description }}</p>
+      <div class="p-4 bg-zinc-800">
+        <p class="text-gray-300 text-sm">{{ album.description }}</p>
       </div>
     </a>
   </div>

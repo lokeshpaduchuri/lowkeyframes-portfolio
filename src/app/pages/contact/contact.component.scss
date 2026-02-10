@@ -1,10 +1,20 @@
 .contact {
+  width: 100%;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 3rem 0;
+}
+
+.contact__inner {
   padding: 1.5rem;
   max-width: 48rem;
-  margin: 2rem auto 0;
-  color: #000;
-  background: #fff;
+  margin: 0 auto;
   text-align: center;
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 3rem;
 }
 
 .contact__header {
@@ -17,6 +27,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   margin: 0;
+  color: #ffffff;
 }
 
 .contact__toggle {
@@ -32,10 +43,12 @@
 
 .contact__subtitle {
   margin-bottom: 1rem;
+  color: #d1d5db;
 }
 
 .contact__question {
   margin-bottom: 1.5rem;
+  color: #e5e7eb;
 }
 
 .contact__grid {
@@ -63,13 +76,14 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #374151;
   border-radius: 0.5rem;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #1f2937;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor: pointer;
   width: 100%;
+  color: #e5e7eb;
 }
 
 .contact__category-emoji {
@@ -77,9 +91,9 @@
 }
 
 .contact__category:hover {
-  border-color: #cbd5e1;
-  background: #f8fafc;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+  border-color: #4ade80;
+  background: #2d3748;
+  box-shadow: 0 2px 6px rgba(74, 222, 128, 0.2);
 }
 
 .contact__form {
@@ -97,31 +111,49 @@
   max-width: 24rem;
 }
 
+.contact__label {
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
 .contact__input {
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid #374151;
   border-radius: 0.25rem;
   width: 100%;
-  background: #fff;
+  background: #1f2937;
+  color: #e5e7eb;
+  transition: border-color 0.2s;
+}
+
+.contact__input:focus {
+  outline: none;
+  border-color: #4ade80;
 }
 
 .contact__submit {
-  padding: 0.5rem;
-  background: #4ADE80;
-  color: #fff;
+  padding: 0.5rem 1.5rem;
+  background: #4ade80;
+  color: #111827;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background 0.2s;
+  font-weight: 600;
 }
 
-.contact__submit:hover {
-  background: #3ddc69;
+.contact__submit:hover:not(:disabled) {
+  background: #22c55e;
+}
+
+.contact__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .contact__success {
   text-align: center;
-  color: #4ADE80;
+  color: #4ade80;
 }
 
 .contact__back {
@@ -132,28 +164,20 @@
   padding: 0;
   cursor: pointer;
   align-self: flex-start;
+  color: #9ca3af;
+  transition: color 0.2s;
 }
 
-
-html.dark-mode .contact {
-  background: #1a1a1a;
-  color: #f1fff6;
+.contact__back:hover {
+  color: #e5e7eb;
 }
 
-html.dark-mode .contact__category {
-  background: #1a1a1a;
-  border-color: #2a2a2a;
-  color: inherit;
+.contact__intro {
+  color: #d1d5db;
+  margin-bottom: 1rem;
 }
 
-html.dark-mode .contact__input {
-  background: #1a1a1a;
-  border-color: #2a2a2a;
-  color: #f1fff6;
-}
-
-html.dark-mode .contact__category:hover {
-  border-color: #334155;
-  background: #111827;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.6);
+.contact__intro-emoji {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }

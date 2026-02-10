@@ -1,10 +1,10 @@
 <nav class="fixed top-0 left-0 w-full bg-black text-white z-50 shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
     <!-- Logo or Title -->
     <a routerLink="/" class="text-xl font-bold text-green-400">LowKey Frames</a>
 
     <!-- Hamburger (Mobile) -->
-    <button class="md:hidden" (click)="toggleMenu()">
+    <button class="md:hidden p-2" (click)="toggleMenu()" aria-label="Toggle menu">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
            viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -26,13 +26,13 @@
 
   <!-- Mobile Menu -->
   <div *ngIf="menuOpen" class="md:hidden bg-black border-t border-gray-700">
-    <ul class="flex flex-col px-4 py-2 space-y-2">
-      <li><a (click)="closeMenu()" routerLink="/">Home</a></li>
-      <li><a (click)="closeMenu()" routerLink="/portfolio">Portfolio</a></li>
-      <li><a (click)="closeMenu()" routerLink="/reviews">Reviews</a></li>
-      <li><a (click)="closeMenu()" routerLink="/blog">Blog</a></li>
-      <li><a (click)="closeMenu()" routerLink="/about">About</a></li>
-      <li><a (click)="closeMenu()" routerLink="/contact">Contact</a></li>
+    <ul class="flex flex-col px-4 py-3 space-y-1">
+      <li><a (click)="closeMenu()" routerLink="/" class="block py-3">Home</a></li>
+      <li><a (click)="closeMenu()" routerLink="/portfolio" class="block py-3">Portfolio</a></li>
+      <li><a (click)="closeMenu()" routerLink="/reviews" class="block py-3">Reviews</a></li>
+      <li><a (click)="closeMenu()" routerLink="/blog" class="block py-3">Blog</a></li>
+      <li><a (click)="closeMenu()" routerLink="/about" class="block py-3">About</a></li>
+      <li><a (click)="closeMenu()" routerLink="/contact" class="block py-3">Contact</a></li>
     </ul>
   </div>
 </nav>
