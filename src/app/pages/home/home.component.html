@@ -1,6 +1,6 @@
 <!-- Hero Section -->
 <section class="relative min-h-screen bg-cover bg-center bg-no-repeat px-4" style="background-image: url('/assets/hero.webp')">
-  <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center text-white px-4">
+  <div class="absolute inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center text-center text-white px-4">
     <h1 class="text-4xl sm:text-6xl font-bold mb-4">LowKey Frames</h1>
     <p class="text-xl sm:text-2xl mb-4"><span>Moments, Framed with Feeling</span></p>
     <app-social-links [size]="'md'" class="justify-center text-white mb-6 backdrop-blur bg-black/30 rounded-full px-3 py-2"></app-social-links>
@@ -8,16 +8,16 @@
 </section>
 
 <!-- Scroll Cards -->
-<section id="scroll-cards" class="bg-ivory text-charcoal py-16 px-4 sm:px-6 grid gap-6 gap-y-10 sm:grid-cols-2">
+<section id="scroll-cards" class="bg-zinc-900 text-gray-100 py-16 px-4 sm:px-6 grid gap-6 gap-y-10 sm:grid-cols-2">
   <!-- Portfolio -->
-  <a [routerLink]="['/portfolio']" class="group block p-8 rounded-2xl bg-mint shadow-md hover:shadow-xl transition-shadow">
+  <a [routerLink]="['/portfolio']" class="group block p-8 rounded-2xl bg-zinc-800 shadow-md hover:shadow-xl transition-shadow border border-emerald/20">
     <h2 class="text-3xl font-semibold text-emerald mb-4 group-hover:underline">📸 View Portfolio</h2>
-    <p>Featured albums and galleries.</p>
+    <p class="text-gray-300">Featured albums and galleries.</p>
   </a>
 
   <!-- Packages -->
-  <a [routerLink]="['/contact']" class="block p-6 rounded-2xl border border-emerald/20 text-emerald/80 hover:text-emerald transition-colors">
+  <a [routerLink]="['/contact']" class="block p-6 rounded-2xl border border-emerald/50 text-emerald hover:text-emerald transition-colors hover:bg-emerald/10">
     <h2 class="text-xl font-semibold mb-2">💼 Book a Session</h2>
-    <p class="text-sm">Reach out to schedule your session.</p>
+    <p class="text-sm text-gray-300">Reach out to schedule your session.</p>
   </a>
 </section>

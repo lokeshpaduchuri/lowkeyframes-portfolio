@@ -3,7 +3,7 @@
 // }
 
 nav a {
-  @apply block px-2 py-1 rounded hover:text-green-400 transition-all duration-300;
+  @apply block px-3 py-2 rounded hover:text-green-400 transition-all duration-300;
 }
 
 nav ul li a.router-link-active {
@@ -11,8 +11,12 @@ nav ul li a.router-link-active {
 }
 nav {
   ul li a {
-    @apply block px-2 py-2 hover:text-green-400 transition-all duration-300;
+    @apply block px-3 py-2 hover:text-green-400 transition-all duration-300;
   }
+}
+
+button[aria-label="Toggle menu"] {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
 }
 
 @media (max-width: 768px) {
