@@ -1,11 +1,14 @@
 .contact {
   padding: 1.5rem;
   max-width: 48rem;
-  margin: 2rem auto 0;
+  margin: 0 auto;
   color: #e5e7eb;
   background: #111827;
   text-align: center;
-  padding-top: 5rem;
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact__header {
