@@ -1,42 +1,28 @@
-# lowkeyframes-portfolio
+# LowKey Frames
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+This is my personal photography portfolio website built to showcase my creative work, photo sessions, and visual storytelling style.
 
-## Development server
+## About
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+LowKey Frames is my creative photography portfolio where I share the moments, stories, and visual experiences I capture through my lens. This website reflects my passion for storytelling, emotion, and creating images that feel natural, cinematic, and memorable.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular
+- TypeScript
+- Tailwind CSS
+- AWS S3
+- CloudFront
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Responsive design
+- Photography portfolio showcase
+- Organized gallery and albums
+- Clean and modern UI
+- Static website deployment
 
-## Running unit tests
 
-Before running the tests, make sure the Angular CLI is available. Install it globally with:
+## Author
 
-```bash
-npm install -g @angular/cli
-```
-
-Alternatively, you can use `npx ng` without a global install.
-
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## AWS S3 Configuration
-
-Edit `src/environments/environment.ts` with your bucket settings so
-`AwsS3Service` can access the images:
-
-- `region`
-- `bucket`
-
-Since the bucket is public, access keys are no longer required.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
+Lokesh Paduchuri
